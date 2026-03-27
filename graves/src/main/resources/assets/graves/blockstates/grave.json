@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "graves:block/grave"
+    }
+  }
+}
