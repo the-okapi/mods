@@ -24,6 +24,7 @@ public class GraveBlockEntity extends BlockEntity {
             items.add(item);
             Graves.LOGGER.info(items.toString());
         }
+        setChanged();
     }
 
     public NonNullList<ItemStack> getItems() {

@@ -3,13 +3,13 @@
 	"id": "graves",
 	"version": "${version}",
 	"name": "graves",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Graves, who protect your items when you die.",
 	"authors": [
 		"theokapi"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/the-okapi/mods",
+		"sources": "https://github.com/the-okapi/mods"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/graves/icon.png",
