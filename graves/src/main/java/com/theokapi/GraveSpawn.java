@@ -69,7 +69,7 @@ public class GraveSpawn {
 
         Inventory inventory = player.getInventory();
 
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 41; i++) {
             graveBlockEntity.addItem(inventory.getItem(i));
         }
 

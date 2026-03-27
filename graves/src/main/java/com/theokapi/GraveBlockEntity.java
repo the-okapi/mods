@@ -43,7 +43,7 @@ public class GraveBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(@NonNull ValueInput input) {
         super.loadAdditional(input);
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 41; i++) {
             Optional<ItemStack> item = input.read("item"+i, ItemStack.CODEC);
             item.ifPresent(items::add);
         }
