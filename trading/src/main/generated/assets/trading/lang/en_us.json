@@ -1,4 +1,11 @@
 {
   "block.trading.banking_table": "Banking Table",
-  "block.trading.trading_table": "Trading Table"
+  "block.trading.trading_table": "Trading Table",
+  "item.trading.fifty_dollars": "Fifty Dollars",
+  "item.trading.five_dollars": "Five Dollars",
+  "item.trading.one_dollar": "One Dollar",
+  "item.trading.one_hundred_dollars": "One Hundred Dollars",
+  "item.trading.ten_dollars": "Ten Dollars",
+  "item.trading.twenty_dollars": "Twenty Dollars",
+  "item.trading.two_dollars": "Two Dollars"
 }

@@ -2,6 +2,8 @@ package com.theokapi;
 
 import com.theokapi.block.TradingBlockEntities;
 import com.theokapi.block.TradingBlocks;
+import com.theokapi.item.TradingItems;
+import com.theokapi.item.TradingTags;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -16,5 +18,7 @@ public class Trading implements ModInitializer {
 	public void onInitialize() {
 		TradingBlocks.init();
 		TradingBlockEntities.init();
+		TradingItems.init();
+		TradingTags.init();
 	}
 }
