@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -50,6 +51,16 @@ public class GraveBlock extends BaseEntityBlock {
         return this.getBlockSupportShape(state, level, pos);
     }
 
+    private static int getSlotsLeft(Inventory inventory) {
+        int slotsLeft = 0;
+        for (int i = 0; i < 36; i++) {
+            if (inventory.getItem(i) == ItemStack.EMPTY) {
+                slotsLeft++;
+            }
+        }
+        return slotsLeft;
+    }
+
     @Override
     protected @NonNull InteractionResult useWithoutItem(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hitResult) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -60,8 +71,14 @@ public class GraveBlock extends BaseEntityBlock {
 
         NonNullList<ItemStack> items = graveBlockEntity.getItems();
 
+        Inventory inventory = player.getInventory();
+
         for (ItemStack item : items) {
-            player.addItem(item);
+            if (getSlotsLeft(inventory) > 0) {
+                player.addItem(item);
+            } else {
+                player.drop(item, true);
+            }
         }
 
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
