@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": "minecraft:gold_ingot",
+    "q": "minecraft:quartz"
+  },
+  "pattern": [
+    "qqq",
+    "qgq",
+    "qqq"
+  ],
+  "result": {
+    "id": "trading:banking_table"
+  }
+}

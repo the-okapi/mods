@@ -30,13 +30,17 @@ public class TradingBlocks {
         return Registry.register(BuiltInRegistries.BLOCK, blockResourceKey, block);
     }
 
-    public static final Block TRADING_TABLE = register("trading_table", Block::new, BlockBehaviour.Properties.of().sound(SoundType.WOOD));
+    public static final Block TRADING_TABLE = register("trading_table", Block::new, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.5f).ignitedByLava());
 
+    public static final Block BANKING_TABLE = register("banking_table", Block::new, BlockBehaviour.Properties.of().strength(0.8f).requiresCorrectToolForDrops());
 
     public static void init() {
         Trading.LOGGER.info("Initializing Blocks");
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
-                .register((itemGroup) -> itemGroup.accept(TRADING_TABLE));
+                .register((itemGroup) -> {
+                    itemGroup.accept(TRADING_TABLE);
+                    itemGroup.accept(BANKING_TABLE);
+                });
     }
 }

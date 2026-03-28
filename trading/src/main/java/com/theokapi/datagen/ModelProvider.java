@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.TexturedModel;
+import org.jspecify.annotations.NonNull;
 
 public class ModelProvider extends FabricModelProvider {
     public ModelProvider(FabricPackOutput output) {
@@ -15,15 +16,16 @@ public class ModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
         blockModelGenerators.createTrivialBlock(TradingBlocks.TRADING_TABLE, TexturedModel.CUBE_TOP_BOTTOM);
+        blockModelGenerators.createTrivialBlock(TradingBlocks.BANKING_TABLE, TexturedModel.CUBE_TOP_BOTTOM);
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerators itemModelGenerators) {
+    public void generateItemModels(@NonNull ItemModelGenerators itemModelGenerators) {
 
     }
 
     @Override
-    public String getName() {
+    public @NonNull String getName() {
         return "ModelProvider";
     }
 }

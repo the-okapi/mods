@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.theokapi.block.TradingBlockEntities;
 import com.theokapi.block.TradingBlocks;
 import net.fabricmc.api.ModInitializer;
 
@@ -14,5 +15,6 @@ public class Trading implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		TradingBlocks.init();
+		TradingBlockEntities.init();
 	}
 }
