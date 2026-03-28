@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.theokapi.datagen.BlockLootTableProvider;
 import com.theokapi.datagen.LangProvider;
 import com.theokapi.datagen.ModelProvider;
 import com.theokapi.datagen.RecipeProvider;
@@ -14,5 +15,6 @@ public class TradingDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModelProvider::new);
 		pack.addProvider(LangProvider::new);
 		pack.addProvider(RecipeProvider::new);
+		pack.addProvider(BlockLootTableProvider::new);
 	}
 }

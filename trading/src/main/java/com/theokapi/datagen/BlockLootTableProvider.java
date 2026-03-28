@@ -1,0 +1,20 @@
+package com.theokapi.datagen;
+
+import com.theokapi.block.TradingBlocks;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
+import net.minecraft.core.HolderLookup;
+
+import java.util.concurrent.CompletableFuture;
+
+public class BlockLootTableProvider extends FabricBlockLootSubProvider {
+    public BlockLootTableProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(packOutput, registriesFuture);
+    }
+
+    @Override
+    public void generate() {
+        dropSelf(TradingBlocks.BANKING_TABLE);
+        dropSelf(TradingBlocks.TRADING_TABLE);
+    }
+}
