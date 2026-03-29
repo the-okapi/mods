@@ -44,7 +44,7 @@ public class TradingBlocks {
     public static final Block BANKING_TABLE = register(
             "banking_table",
             BankingTableBlock::new,
-            BlockBehaviour.Properties.of().strength(0.8f).requiresCorrectToolForDrops()
+            BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.5f).ignitedByLava()
     );
 
     public static void init() {

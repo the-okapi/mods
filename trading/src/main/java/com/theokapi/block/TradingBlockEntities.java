@@ -1,7 +1,6 @@
 package com.theokapi.block;
 
 import com.theokapi.Trading;
-import com.theokapi.block.bankingtable.BankingTableBlockEntity;
 import com.theokapi.block.tradingtable.TradingTableBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.core.Registry;
@@ -25,9 +24,6 @@ public class TradingBlockEntities {
 
     public static final BlockEntityType<TradingTableBlockEntity> TRADING_TABLE_BLOCK_ENTITY =
             register("trading_table", TradingTableBlockEntity::new, TradingBlocks.TRADING_TABLE);
-
-    public static final BlockEntityType<BankingTableBlockEntity> BANKING_TABLE_BLOCK_ENTITY =
-            register("banking_table", BankingTableBlockEntity::new, TradingBlocks.BANKING_TABLE);
 
     public static void init() {
         Trading.LOGGER.info("Initializing Block Entities");
