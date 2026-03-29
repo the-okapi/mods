@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "one_dollar",
+  "ingredients": [
+    "money:twenty_dollars"
+  ],
+  "result": {
+    "count": 20,
+    "id": "money:one_dollar"
+  }
+}

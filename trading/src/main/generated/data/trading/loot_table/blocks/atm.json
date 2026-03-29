@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "trading:banking_table"
+          "name": "trading:atm"
         }
       ],
       "rolls": 1.0

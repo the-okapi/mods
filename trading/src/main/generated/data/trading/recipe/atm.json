@@ -3,14 +3,15 @@
   "category": "misc",
   "key": {
     "g": "minecraft:gold_ingot",
-    "q": "minecraft:quartz"
+    "i": "minecraft:iron_ingot",
+    "r": "minecraft:redstone"
   },
   "pattern": [
-    "qqq",
-    "qgq",
-    "qqq"
+    "iri",
+    "igi",
+    "iri"
   ],
   "result": {
-    "id": "trading:banking_table"
+    "id": "trading:atm"
   }
 }

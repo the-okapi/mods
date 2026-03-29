@@ -15,7 +15,7 @@ public class LangProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(HolderLookup.@NonNull Provider provider, TranslationBuilder translationBuilder) {
         translationBuilder.add("block.trading.trading_table", "Trading Table");
-        translationBuilder.add("block.trading.banking_table", "Banking Table");
+        translationBuilder.add("block.trading.atm", "ATM");
 
         translationBuilder.add("item.trading.one_dollar", "One Dollar");
         translationBuilder.add("item.trading.two_dollars", "Two Dollars");

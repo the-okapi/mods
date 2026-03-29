@@ -31,14 +31,16 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(ItemTags.PLANKS.toString(), has(ItemTags.PLANKS))
                         .save(recipeOutput);
 
-                shaped(RecipeCategory.MISC, TradingBlocks.BANKING_TABLE)
-                        .pattern("qqq")
-                        .pattern("qgq")
-                        .pattern("qqq")
-                        .define('q', Items.QUARTZ)
+                shaped(RecipeCategory.MISC, TradingBlocks.ATM)
+                        .pattern("iri")
+                        .pattern("igi")
+                        .pattern("iri")
+                        .define('i', Items.IRON_INGOT)
                         .define('g', Items.GOLD_INGOT)
-                        .unlockedBy(getHasName(Items.QUARTZ), has(Items.QUARTZ))
+                        .define('r', Items.REDSTONE)
+                        .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                         .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                        .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
                         .save(recipeOutput);
 
                 // $1

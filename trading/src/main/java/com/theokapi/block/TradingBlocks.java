@@ -1,7 +1,6 @@
 package com.theokapi.block;
 
 import com.theokapi.Trading;
-import com.theokapi.block.bankingtable.BankingTableBlock;
 import com.theokapi.block.tradingtable.TradingTableBlock;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
@@ -41,9 +40,9 @@ public class TradingBlocks {
             BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.5f).ignitedByLava()
     );
 
-    public static final Block BANKING_TABLE = register(
-            "banking_table",
-            BankingTableBlock::new,
+    public static final Block ATM = register(
+            "atm",
+            ATMBlock::new,
             BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.5f).ignitedByLava()
     );
 
@@ -53,7 +52,7 @@ public class TradingBlocks {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .register((itemGroup) -> {
                     itemGroup.accept(TRADING_TABLE);
-                    itemGroup.accept(BANKING_TABLE);
+                    itemGroup.accept(ATM);
                 });
     }
 }

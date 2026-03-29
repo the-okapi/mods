@@ -14,7 +14,7 @@ public class BlockLootTableProvider extends FabricBlockLootSubProvider {
 
     @Override
     public void generate() {
-        dropSelf(TradingBlocks.BANKING_TABLE);
+        dropSelf(TradingBlocks.ATM);
         dropSelf(TradingBlocks.TRADING_TABLE);
     }
 }

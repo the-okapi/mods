@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "trading:block/banking_table"
+    "model": "money:item/five_dollars"
   }
 }

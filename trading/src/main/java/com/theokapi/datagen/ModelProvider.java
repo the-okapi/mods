@@ -18,7 +18,7 @@ public class ModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
         blockModelGenerators.createTrivialBlock(TradingBlocks.TRADING_TABLE, TexturedModel.CUBE_TOP_BOTTOM);
-        blockModelGenerators.createTrivialBlock(TradingBlocks.BANKING_TABLE, TexturedModel.CUBE_TOP_BOTTOM);
+        blockModelGenerators.createTrivialBlock(TradingBlocks.ATM, TexturedModel.CUBE_TOP_BOTTOM);
     }
 
     @Override
