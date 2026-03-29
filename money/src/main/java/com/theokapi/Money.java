@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.theokapi.block.MoneyBlocks;
 import com.theokapi.item.MoneyItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -14,5 +15,6 @@ public class Money implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		MoneyItems.init();
+		MoneyBlocks.init();
 	}
 }

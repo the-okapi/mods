@@ -31,13 +31,13 @@ public class MoneyItems {
         Money.LOGGER.info("Initializing Items");
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .register((itemGroup) -> {
-                    itemGroup.accept(ONE_DOLLAR);
-                    itemGroup.accept(FIVE_DOLLARS);
-                    itemGroup.accept(TEN_DOLLARS);
-                    itemGroup.accept(TWENTY_DOLLARS);
-                    itemGroup.accept(FIFTY_DOLLARS);
-                    itemGroup.accept(ONE_HUNDRED_DOLLARS);
+                .register((creativeModeTab) -> {
+                    creativeModeTab.accept(ONE_DOLLAR);
+                    creativeModeTab.accept(FIVE_DOLLARS);
+                    creativeModeTab.accept(TEN_DOLLARS);
+                    creativeModeTab.accept(TWENTY_DOLLARS);
+                    creativeModeTab.accept(FIFTY_DOLLARS);
+                    creativeModeTab.accept(ONE_HUNDRED_DOLLARS);
                 });
     }
 }

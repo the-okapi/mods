@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "g": "minecraft:gold_ingot",
+    "i": "minecraft:iron_ingot",
+    "r": "minecraft:redstone"
+  },
+  "pattern": [
+    "iri",
+    "igi",
+    "iri"
+  ],
+  "result": {
+    "id": "money:atm"
+  }
+}

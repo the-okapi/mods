@@ -1,11 +1,13 @@
 package com.theokapi.datagen;
 
+import com.theokapi.block.MoneyBlocks;
 import com.theokapi.item.MoneyItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -145,6 +147,19 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(MoneyItems.FIFTY_DOLLARS), has(MoneyItems.FIFTY_DOLLARS))
                         .group("one_hundred_dollars")
                         .save(recipeOutput, "one_hundred_from_fifty");
+                // End money conversion recipes
+
+                shaped(RecipeCategory.REDSTONE, MoneyBlocks.ATM)
+                        .pattern("iri")
+                        .pattern("igi")
+                        .pattern("iri")
+                        .define('i', Items.IRON_INGOT)
+                        .define('r', Items.REDSTONE)
+                        .define('g', Items.GOLD_INGOT)
+                        .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                        .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
+                        .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                        .save(recipeOutput);
             }
         };
     }

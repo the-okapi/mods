@@ -1,11 +1,13 @@
 package com.theokapi.datagen;
 
+import com.theokapi.block.MoneyBlocks;
 import com.theokapi.item.MoneyItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TexturedModel;
 import org.jspecify.annotations.NonNull;
 
 public class ModelProvider extends FabricModelProvider {
@@ -15,7 +17,7 @@ public class ModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(@NonNull BlockModelGenerators blockModelGenerators) {
-
+        blockModelGenerators.createTrivialBlock(MoneyBlocks.ATM, TexturedModel.COLUMN_ALT);
     }
 
     @Override
