@@ -1,4 +1,6 @@
 # theOkapi's Minecraft mods
 
-- Graves
+- **Graves** *(complete)*
+- **Money** *(complete)*
+- Origins
 - Trading

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": "minecraft:blaze_powder",
+    "e": "minecraft:ender_eye",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "ebe",
+    "bgb",
+    "ebe"
+  ],
+  "result": {
+    "id": "origins:blazeborn_orb"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "e": "minecraft:ender_eye",
+    "f": "minecraft:feather",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "efe",
+    "fgf",
+    "efe"
+  ],
+  "result": {
+    "id": "origins:avian_orb"
+  }
+}
