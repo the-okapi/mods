@@ -1,6 +1,7 @@
 package com.theokapi.item;
 
 import com.theokapi.Origins;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +24,8 @@ public class OrbItem extends Item {
 
     @Override
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
+        player.playSound(SoundEvents.ITEM_PICKUP);
+
         player.setAttached(Origins.ORIGIN_ATTACHMENT, origin);
 
         if (action != null) {

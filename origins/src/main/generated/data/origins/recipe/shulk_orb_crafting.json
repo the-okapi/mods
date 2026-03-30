@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": "minecraft:shulker_shell",
+    "e": "minecraft:ender_eye",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "ebe",
+    "bgb",
+    "ebe"
+  ],
+  "result": {
+    "id": "origins:shulk_orb"
+  }
+}

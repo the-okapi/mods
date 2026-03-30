@@ -1,8 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
+  "group": "phantom_orb",
   "key": {
-    "b": "minecraft:blaze_powder",
+    "b": "minecraft:phantom_membrane",
     "e": "minecraft:ender_eye",
     "g": "minecraft:enchanted_golden_apple"
   },
@@ -12,6 +13,6 @@
     "ebe"
   ],
   "result": {
-    "id": "origins:blazeborn_orb"
+    "id": "origins:phantom_orb"
   }
 }

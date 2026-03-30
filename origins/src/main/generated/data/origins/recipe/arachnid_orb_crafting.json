@@ -1,17 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
+  "group": "arachnid_orb",
   "key": {
+    "b": "minecraft:spider_eye",
     "e": "minecraft:ender_eye",
-    "f": "minecraft:feather",
     "g": "minecraft:enchanted_golden_apple"
   },
   "pattern": [
-    "efe",
-    "fgf",
-    "efe"
+    "ebe",
+    "bgb",
+    "ebe"
   ],
   "result": {
-    "id": "origins:avian_orb"
+    "id": "origins:arachnid_orb"
   }
 }

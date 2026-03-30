@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "origins:avian_orb"
+        "recipe": "origins:avian_orb_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_feather",
       "has_ender_eye",
-      "has_enchanted_golden_apple"
+      "has_enchanted_golden_apple",
+      "has_feather"
     ]
   ],
   "rewards": {
     "recipes": [
-      "origins:avian_orb"
+      "origins:avian_orb_crafting"
     ]
   }
 }

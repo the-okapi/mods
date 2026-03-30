@@ -1,15 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
+  "group": "enderian_orb",
   "key": {
+    "b": "minecraft:ender_pearl",
     "e": "minecraft:ender_eye",
-    "g": "minecraft:enchanted_golden_apple",
-    "p": "minecraft:ender_pearl"
+    "g": "minecraft:enchanted_golden_apple"
   },
   "pattern": [
-    "epe",
-    "pgp",
-    "epe"
+    "ebe",
+    "bgb",
+    "ebe"
   ],
   "result": {
     "id": "origins:enderian_orb"

@@ -1,16 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blaze_powder": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:blaze_powder"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_enchanted_golden_apple": {
       "conditions": {
         "items": [
@@ -31,9 +21,19 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_phantom_membrane": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:phantom_membrane"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "origins:blazeborn_orb"
+        "recipe": "origins:phantom_orb_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_blaze_powder",
       "has_ender_eye",
-      "has_enchanted_golden_apple"
+      "has_enchanted_golden_apple",
+      "has_phantom_membrane"
     ]
   ],
   "rewards": {
     "recipes": [
-      "origins:blazeborn_orb"
+      "origins:phantom_orb_crafting"
     ]
   }
 }

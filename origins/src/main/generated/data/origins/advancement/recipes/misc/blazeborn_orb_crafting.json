@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_blaze_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blaze_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_enchanted_golden_apple": {
       "conditions": {
         "items": [
@@ -21,19 +31,9 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_ender_pearl": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:ender_pearl"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "origins:enderian_orb"
+        "recipe": "origins:blazeborn_orb_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_ender_pearl",
       "has_ender_eye",
-      "has_enchanted_golden_apple"
+      "has_enchanted_golden_apple",
+      "has_blaze_rod"
     ]
   ],
   "rewards": {
     "recipes": [
-      "origins:enderian_orb"
+      "origins:blazeborn_orb_crafting"
     ]
   }
 }

@@ -12,6 +12,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class OriginsItems {
@@ -25,23 +26,27 @@ public class OriginsItems {
         return Registry.register(BuiltInRegistries.ITEM, itemResourceKey, itemFunction.apply(itemProperties.setId(itemResourceKey)));
     }
 
-    public static final Item BLAZEBORN_ORB = register(
-            "blazeborn_orb",
-            properties -> new OrbItem(properties, "blazeborn", OriginsItems::blazebornInit),
-            new Item.Properties().stacksTo(1)
-    );
+    private static Item registerOrb(String name, BiConsumer<Level, Player> function) {
+        return register(name+"_orb", properties -> new OrbItem(properties, name, function), new Item.Properties().stacksTo(1));
+    }
 
-    public static final Item AVIAN_ORB = register(
-            "avian_orb",
-            properties -> new OrbItem(properties, "avian", null),
-            new Item.Properties().stacksTo(1)
-    );
+    public static final Item BLAZEBORN_ORB = registerOrb("blazeborn", OriginsItems::blazebornInit);
 
-    public static final Item ENDERIAN_ORB = register(
-            "enderian_orb",
-            properties -> new OrbItem(properties, "enderian", null),
-            new Item.Properties().stacksTo(1)
-    );
+    public static final Item AVIAN_ORB = registerOrb("avian", null);
+
+    public static final Item ENDERIAN_ORB = registerOrb("enderian", null);
+
+    public static final Item MERLING_ORB = registerOrb("merling", null);
+
+    public static final Item PHANTOM_ORB = registerOrb("phantom", null);
+
+    public static final Item ELYTRIAN_ORB = registerOrb("elytrian", null);
+
+    public static final Item ARACHNID_ORB = registerOrb("arachnid", null);
+
+    public static final Item SHULK_ORB = registerOrb("shulk", null);
+
+    public static final Item FELINE_ORB = registerOrb("feline", null);
 
     public static void init() {
         Origins.LOGGER.info("Initializing Items");
@@ -51,6 +56,12 @@ public class OriginsItems {
                     creativeModeTab.accept(BLAZEBORN_ORB);
                     creativeModeTab.accept(AVIAN_ORB);
                     creativeModeTab.accept(ENDERIAN_ORB);
+                    creativeModeTab.accept(MERLING_ORB);
+                    creativeModeTab.accept(PHANTOM_ORB);
+                    creativeModeTab.accept(ELYTRIAN_ORB);
+                    creativeModeTab.accept(ARACHNID_ORB);
+                    creativeModeTab.accept(SHULK_ORB);
+                    creativeModeTab.accept(FELINE_ORB);
                 });
     }
 }
