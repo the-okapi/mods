@@ -61,6 +61,9 @@ public class OriginsItems {
             FELINE_ORB
     );
 
+    public static final Item REVERSE_ORB =
+            register("reverse_orb", properties -> new OrbItem(properties, "", null), new Item.Properties().stacksTo(1));
+
     public static void init() {
         Origins.LOGGER.info("Initializing Items");
 
@@ -75,6 +78,7 @@ public class OriginsItems {
                     creativeModeTab.accept(ARACHNID_ORB);
                     creativeModeTab.accept(SHULK_ORB);
                     creativeModeTab.accept(FELINE_ORB);
+                    creativeModeTab.accept(REVERSE_ORB);
                 });
     }
 }

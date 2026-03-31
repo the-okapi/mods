@@ -39,7 +39,6 @@ public class OriginsEvents {
                     registry.get(DamageTypes.HOT_FLOOR).orElseThrow().value().msgId(),
                     registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
             );
-            Origins.LOGGER.info(damageSource.toString());
             return !blazeBornDamageTypes.contains(damageSource.type().msgId());
         }
         return true;
@@ -51,7 +50,6 @@ public class OriginsEvents {
         for (ServerPlayer player : players) {
             Fluid fluid = serverLevel.getBlockState(player.blockPosition()).getFluidState().getType();
             String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
-
             if ("blazeborn".equals(origin) || "enderian".equals(origin)) {
                 if (fluid == Fluids.FLOWING_WATER || fluid == Fluids.WATER) {
                     player.hurtServer(serverLevel, new DamageSource(
@@ -63,8 +61,6 @@ public class OriginsEvents {
                     for (int i = blockPos.getY()+2; i < 320; i++) {
                         BlockState blockState = serverLevel.getBlockState(new BlockPos(blockPos.getX(), i, blockPos.getY()));
                         if (blockState != Blocks.AIR.defaultBlockState()) {
-                            Origins.LOGGER.info("{}1", blockState);
-                            Origins.LOGGER.info("{}2", Blocks.AIR.defaultBlockState());
                             blockAbove = true;
                         }
                     }
@@ -95,12 +91,8 @@ public class OriginsEvents {
             Item orb = OriginsItems.ORBS.get(random.nextInt(OriginsItems.ORBS.size()));
             ItemStack itemStack = new ItemStack(orb, 1);
             Inventory inventory = player.getInventory();
-            Origins.LOGGER.info(inventory.getNonEquipmentItems().toString());
             inventory.add(itemStack);
-            Origins.LOGGER.info(inventory.getNonEquipmentItems().toString());
             player.setAttached(Origins.JOINED_ATTACHMENT, true);
-        } else {
-            Origins.LOGGER.info("False");
         }
     }
 }
