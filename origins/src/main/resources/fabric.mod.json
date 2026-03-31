@@ -21,6 +21,9 @@
 		],
 		"fabric-datagen": [
 			"com.theokapi.OriginsDataGenerator"
+		],
+		"client": [
+			"com.theokapi.OriginsClient"
 		]
 	},
 	"mixins": [

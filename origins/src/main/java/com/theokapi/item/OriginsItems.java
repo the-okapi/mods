@@ -12,6 +12,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -47,6 +48,18 @@ public class OriginsItems {
     public static final Item SHULK_ORB = registerOrb("shulk", null);
 
     public static final Item FELINE_ORB = registerOrb("feline", null);
+
+    public static final List<Item> ORBS = List.of(
+            BLAZEBORN_ORB,
+            ARACHNID_ORB,
+            ENDERIAN_ORB,
+            MERLING_ORB,
+            PHANTOM_ORB,
+            ELYTRIAN_ORB,
+            ARACHNID_ORB,
+            SHULK_ORB,
+            FELINE_ORB
+    );
 
     public static void init() {
         Origins.LOGGER.info("Initializing Items");

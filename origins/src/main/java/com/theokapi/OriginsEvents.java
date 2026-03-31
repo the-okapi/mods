@@ -1,11 +1,13 @@
 package com.theokapi;
 
+import com.theokapi.item.OriginsItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -13,6 +15,9 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
@@ -20,10 +25,11 @@ import net.minecraft.world.level.material.Fluids;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 
 public class OriginsEvents {
-    public static boolean allowDamage(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
+    public static boolean allowDamage(LivingEntity livingEntity, DamageSource damageSource) {
         String origin = livingEntity.getAttached(Origins.ORIGIN_ATTACHMENT);
         Registry<DamageType> registry = livingEntity.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE);
         if ("blazeborn".equals(origin)) {
@@ -79,6 +85,22 @@ public class OriginsEvents {
                     }
                 }
             }
+        }
+    }
+
+    public static void join(ServerGamePacketListenerImpl handler) {
+        ServerPlayer player = handler.getPlayer();
+        if (player.getAttached(Origins.JOINED_ATTACHMENT) == null) {
+            Random random = new Random();
+            Item orb = OriginsItems.ORBS.get(random.nextInt(OriginsItems.ORBS.size()));
+            ItemStack itemStack = new ItemStack(orb, 1);
+            Inventory inventory = player.getInventory();
+            Origins.LOGGER.info(inventory.getNonEquipmentItems().toString());
+            inventory.add(itemStack);
+            Origins.LOGGER.info(inventory.getNonEquipmentItems().toString());
+            player.setAttached(Origins.JOINED_ATTACHMENT, true);
+        } else {
+            Origins.LOGGER.info("False");
         }
     }
 }

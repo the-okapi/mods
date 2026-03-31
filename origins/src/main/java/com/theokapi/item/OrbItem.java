@@ -24,7 +24,7 @@ public class OrbItem extends Item {
 
     @Override
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
-        player.playSound(SoundEvents.ITEM_PICKUP);
+        player.playSound(SoundEvents.END_PORTAL_SPAWN);
 
         player.setAttached(Origins.ORIGIN_ATTACHMENT, origin);
 
