@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -38,9 +39,15 @@ public class Origins implements ModInitializer {
 					)
 	);
 
-	public static final AttachmentType<Boolean> JOINED_ATTACHMENT = AttachmentRegistry.createPersistent(
+	public static final AttachmentType<Boolean> JOINED_ATTACHMENT = AttachmentRegistry.create(
 			Identifier.fromNamespaceAndPath(MOD_ID, "joined_attachment"),
-			Codec.BOOL
+			booleanBuilder -> booleanBuilder
+					.initializer(() -> false)
+					.copyOnDeath()
+					.syncWith(
+							ByteBufCodecs.BOOL,
+							AttachmentSyncPredicate.targetOnly()
+					)
 	);
 
 	public static final TagKey<Item> ORBS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "orbs"));
@@ -57,6 +64,7 @@ public class Origins implements ModInitializer {
 		EntitySleepEvents.ALLOW_SLEEPING.register(OriginsEvents::allowSleeping);
 		UseItemCallback.EVENT.register((player, _, _) -> OriginsEvents.useItem(player));
 		UseBlockCallback.EVENT.register(((player, level, _, blockHitResult) -> OriginsEvents.useBlock(player, level, blockHitResult)));
+		ServerPlayerEvents.AFTER_RESPAWN.register(((_, newPlayer, _) -> OriginsEvents.afterRespawn(newPlayer)));
 
 		OriginsItems.init();
 	}

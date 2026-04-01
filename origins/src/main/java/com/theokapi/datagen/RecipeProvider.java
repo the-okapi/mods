@@ -225,16 +225,6 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
                         .group("breezeborn_orb")
                         .save(recipeOutput, "breezeborn_orb_converting");
-
-                shaped(RecipeCategory.MISC, OriginsItems.REVERSE_ORB)
-                        .pattern("mmm")
-                        .pattern("mem")
-                        .pattern("mmm")
-                        .define('m', Items.MILK_BUCKET)
-                        .define('e', Items.ENDER_EYE)
-                        .unlockedBy(getHasName(Items.MILK_BUCKET), has(Items.MILK_BUCKET))
-                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
-                        .save(recipeOutput);
             }
         };
     }

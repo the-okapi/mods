@@ -166,4 +166,13 @@ public class OriginsEvents {
         }
         return InteractionResult.PASS;
     }
+
+    public static void afterRespawn(ServerPlayer player) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+
+        if (origin != null) {
+            Origins.LOGGER.info("respawn");
+            OriginsFunctions.callInitFunction(origin, player);
+        }
+    }
 }

@@ -12,13 +12,13 @@ Takes Damage when wearing a pumpkin.
 
 ### Merling:
 
-Can breath underwater: permanent water breathing
+Can breath underwater: permanent water breathing **COMPLETED**
 
 Can see under?
 
 Can break block underwater as if not in water?
 
-Has increased swim speed
+Has increased swim speed **COMPLETED**
 
 Does not sink underwater
 
@@ -77,7 +77,7 @@ Cobweb spawned on attacker when attacked
 
 3 less hearts of life
 
-Can only eat meat
+Can only eat meat: **COMPLETED**
 
 ### Shulk:
 

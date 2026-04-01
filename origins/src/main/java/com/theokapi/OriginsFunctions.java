@@ -16,11 +16,17 @@ public class OriginsFunctions {
         if ("breezeborn".equals(origin) || "blazeborn".equals(origin)) {
             removeArmorInit(player);
         }
+        if ("merling".equals(origin)) {
+            merlingInit(player);
+        }
     }
 
     public static void callCleanupFunction(@Nullable String origin, Player player) {
         if ("avian".equals(origin)) {
             avianCleanup(player);
+        }
+        if ("merling".equals(origin)) {
+            merlingCleanup(player);
         }
     }
 
@@ -32,6 +38,16 @@ public class OriginsFunctions {
     private static void avianCleanup(Player player) {
         player.removeEffect(MobEffects.SPEED);
         player.removeEffect(MobEffects.SLOW_FALLING);
+    }
+
+    private static void merlingInit(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, -1, 0, true, false, false));
+    }
+
+    private static void merlingCleanup(Player player) {
+        player.removeEffect(MobEffects.DOLPHINS_GRACE);
+        player.removeEffect(MobEffects.WATER_BREATHING);
     }
 
     private static void removeArmorInit(Player player) {
