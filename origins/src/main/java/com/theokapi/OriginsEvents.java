@@ -98,19 +98,6 @@ public class OriginsEvents {
                         player.removeEffect(effect);
                     }
                 }
-                Inventory inventory = player.getInventory();
-                for (int i = 36; i < 40; i++) {
-                    ItemStack item = inventory.getItem(i);
-                    if (item.is(ItemTags.HEAD_ARMOR) || item.is(ItemTags.CHEST_ARMOR) || item.is(ItemTags.LEG_ARMOR) || item.is(ItemTags.FOOT_ARMOR)) {
-                        inventory.setItem(i, ItemStack.EMPTY);
-                        int freeSlot = inventory.getFreeSlot();
-                        if (freeSlot != -1) {
-                            inventory.setItem(freeSlot, item);
-                        } else {
-                            player.drop(item, true);
-                        }
-                    }
-                }
             }
         }
     }
@@ -142,6 +129,17 @@ public class OriginsEvents {
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
 
         if ("avian".equals(origin) && player.getActiveItem().is(ItemTags.MEAT)) {
+            return InteractionResult.FAIL;
+        }
+
+        ItemStack item = player.getActiveItem();
+
+        if ("blazeborn".equals(origin) && (
+                item.is(ItemTags.HEAD_ARMOR) ||
+                        item.is(ItemTags.CHEST_ARMOR) ||
+                        item.is(ItemTags.LEG_ARMOR) ||
+                        item.is(ItemTags.FOOT_ARMOR)
+                )) {
             return InteractionResult.FAIL;
         }
 
