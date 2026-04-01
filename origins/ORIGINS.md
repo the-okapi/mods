@@ -40,7 +40,7 @@ Every 30 seconds, can launch into air.
 
 Double damage while in elytra flight
 
-Can only wear light armour
+Can only wear light armour **COMPLETED**
 
 More kinetic damage
 

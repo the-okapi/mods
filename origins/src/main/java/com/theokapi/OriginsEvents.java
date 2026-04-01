@@ -23,10 +23,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Collection;
 import java.util.List;
@@ -128,11 +131,16 @@ public class OriginsEvents {
     public static InteractionResult useItem(Player player) {
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
 
-        if ("avian".equals(origin) && player.getActiveItem().is(ItemTags.MEAT)) {
+        ItemStack item = player.getActiveItem();
+
+        if ("avian".equals(origin) && item.is(ItemTags.MEAT)) {
             return InteractionResult.FAIL;
         }
 
-        ItemStack item = player.getActiveItem();
+        if ("arachnid".equals(origin) && item.is(Origins.FOODS) && !item.is(ItemTags.MEAT)) {
+            return InteractionResult.FAIL;
+        }
+
 
         if (("blazeborn".equals(origin) || "breezeborn".equals(origin)) && (
                 item.is(ItemTags.HEAD_ARMOR) ||
@@ -143,6 +151,19 @@ public class OriginsEvents {
             return InteractionResult.FAIL;
         }
 
+        if ("elytrian".equals(origin) && item.is(Origins.ELYTRIAN_NOT_ALLOWED)) {
+            return InteractionResult.FAIL;
+        }
+
+        return InteractionResult.PASS;
+    }
+
+    public static InteractionResult useBlock(Player player, Level level, BlockHitResult blockHitResult) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+        Block block = level.getBlockState(blockHitResult.getBlockPos()).getBlock();
+        if ("arachnid".equals(origin) && block == Blocks.CAKE) {
+            return InteractionResult.FAIL;
+        }
         return InteractionResult.PASS;
     }
 }

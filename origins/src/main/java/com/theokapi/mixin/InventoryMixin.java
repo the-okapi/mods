@@ -33,7 +33,10 @@ abstract class InventoryMixin {
                         itemStack.is(ItemTags.FOOT_ARMOR)
                 )) {
             ci.cancel();
-
+            player.addItem(itemStack);
+        }
+        if ("elytrian".equals(origin) && itemStack.is(Origins.ELYTRIAN_NOT_ALLOWED)) {
+            ci.cancel();
             player.addItem(itemStack);
         }
     }
