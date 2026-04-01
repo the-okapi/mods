@@ -57,6 +57,9 @@ public class OriginsClient implements ClientModInitializer {
             case "shulk":
                 item = Items.SHULKER_SHELL;
                 break;
+            case "breezeborn":
+                item = Items.BREEZE_ROD;
+                break;
             case null, default:
                 return;
         }

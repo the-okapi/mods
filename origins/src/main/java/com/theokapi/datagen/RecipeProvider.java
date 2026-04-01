@@ -196,6 +196,7 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
                         .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
                         .unlockedBy(getHasName(Items.SHULKER_SHELL), has(Items.SHULKER_SHELL))
+                        .group("shulk_orb")
                         .save(recipeOutput, "shulk_orb_crafting");
 
                 shapeless(RecipeCategory.MISC, OriginsItems.SHULK_ORB)
@@ -204,6 +205,26 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.SHULKER_SHELL), has(Items.SHULKER_SHELL))
                         .group("shulk_orb")
                         .save(recipeOutput, "shulk_orb_converting");
+
+                shaped(RecipeCategory.MISC, OriginsItems.BREEZEBORN_ORB)
+                        .pattern("ebe")
+                        .pattern("bgb")
+                        .pattern("ebe")
+                        .define('e', Items.ENDER_EYE)
+                        .define('g', Items.ENCHANTED_GOLDEN_APPLE)
+                        .define('b', Items.BREEZE_ROD)
+                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
+                        .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
+                        .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
+                        .group("breezeborn_orb")
+                        .save(recipeOutput, "breezeborn_orb_crafting");
+
+                shapeless(RecipeCategory.MISC, OriginsItems.BREEZEBORN_ORB)
+                        .requires(Origins.ORBS)
+                        .requires(Items.BREEZE_ROD, 4)
+                        .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
+                        .group("breezeborn_orb")
+                        .save(recipeOutput, "breezeborn_orb_converting");
 
                 shaped(RecipeCategory.MISC, OriginsItems.REVERSE_ORB)
                         .pattern("mmm")

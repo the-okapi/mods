@@ -42,6 +42,8 @@ public class OriginsItems {
 
     public static final Item FELINE_ORB = registerOrb("feline");
 
+    public static final Item BREEZEBORN_ORB = registerOrb("breezeborn");
+
     public static final List<Item> ORBS = List.of(
             BLAZEBORN_ORB,
             ARACHNID_ORB,
@@ -51,7 +53,8 @@ public class OriginsItems {
             ELYTRIAN_ORB,
             ARACHNID_ORB,
             SHULK_ORB,
-            FELINE_ORB
+            FELINE_ORB,
+            BREEZEBORN_ORB
     );
 
     public static final Item REVERSE_ORB =
@@ -63,6 +66,7 @@ public class OriginsItems {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .register(creativeModeTab -> {
                     creativeModeTab.accept(BLAZEBORN_ORB);
+                    creativeModeTab.accept(BREEZEBORN_ORB);
                     creativeModeTab.accept(AVIAN_ORB);
                     creativeModeTab.accept(ENDERIAN_ORB);
                     creativeModeTab.accept(MERLING_ORB);

@@ -1,14 +1,20 @@
 package com.theokapi;
 
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jspecify.annotations.Nullable;
 
 public class OriginsFunctions {
     public static void callInitFunction(@Nullable String origin, Player player) {
         if ("avian".equals(origin)) {
             avianInit(player);
+        }
+        if ("breezeborn".equals(origin) || "blazeborn".equals(origin)) {
+            removeArmorInit(player);
         }
     }
 
@@ -26,5 +32,21 @@ public class OriginsFunctions {
     private static void avianCleanup(Player player) {
         player.removeEffect(MobEffects.SPEED);
         player.removeEffect(MobEffects.SLOW_FALLING);
+    }
+
+    private static void removeArmorInit(Player player) {
+        Inventory inventory = player.getInventory();
+        for (int i = 36; i < 50; i++) {
+            ItemStack item = inventory.getItem(i);
+            if (item.is(ItemTags.HEAD_ARMOR) || item.is(ItemTags.CHEST_ARMOR) || item.is(ItemTags.LEG_ARMOR) || item.is(ItemTags.FOOT_ARMOR)) {
+                inventory.setItem(i, ItemStack.EMPTY);
+            }
+            int freeSlot = inventory.getFreeSlot();
+            if (freeSlot != -1) {
+                inventory.setItem(freeSlot, item);
+            } else {
+                player.drop(item, true);
+            }
+        }
     }
 }

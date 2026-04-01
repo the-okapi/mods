@@ -30,5 +30,6 @@ public class ModelProvider extends FabricModelProvider {
         itemModelGenerators.generateFlatItem(OriginsItems.FELINE_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.SHULK_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.REVERSE_ORB, ModelTemplates.FLAT_ITEM);
+        itemModelGenerators.generateFlatItem(OriginsItems.BREEZEBORN_ORB, ModelTemplates.FLAT_ITEM);
     }
 }

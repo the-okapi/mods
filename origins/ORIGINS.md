@@ -107,7 +107,7 @@ Only mines stone when less than 3 natural stone blocks touching
 
 ### Breezeborn
 
-No armor
+No armor: **COMPLETED**
 Shoots wind charges
 Extra Jump
 No fall damage

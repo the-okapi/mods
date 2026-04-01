@@ -24,6 +24,7 @@ public class LangProvider extends FabricLanguageProvider {
         translationBuilder.add("item.origins.feline_orb", "Feline Orb");
         translationBuilder.add("item.origins.shulk_orb", "Shulk Orb");
         translationBuilder.add("item.origins.reverse_orb", "Reverse Orb");
+        translationBuilder.add("item.origins.breezeborn_orb", "Breezeborn Orb");
 
         translationBuilder.add("tag.item.origins.orbs", "Orbs");
     }

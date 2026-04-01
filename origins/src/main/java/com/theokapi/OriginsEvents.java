@@ -134,7 +134,7 @@ public class OriginsEvents {
 
         ItemStack item = player.getActiveItem();
 
-        if ("blazeborn".equals(origin) && (
+        if (("blazeborn".equals(origin) || "breezeborn".equals(origin)) && (
                 item.is(ItemTags.HEAD_ARMOR) ||
                         item.is(ItemTags.CHEST_ARMOR) ||
                         item.is(ItemTags.LEG_ARMOR) ||

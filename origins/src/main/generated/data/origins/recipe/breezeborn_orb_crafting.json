@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "group": "shulk_orb",
+  "group": "breezeborn_orb",
   "key": {
-    "b": "minecraft:shulker_shell",
+    "b": "minecraft:breeze_rod",
     "e": "minecraft:ender_eye",
     "g": "minecraft:enchanted_golden_apple"
   },
@@ -13,6 +13,6 @@
     "ebe"
   ],
   "result": {
-    "id": "origins:shulk_orb"
+    "id": "origins:breezeborn_orb"
   }
 }

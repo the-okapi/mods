@@ -26,17 +26,15 @@ abstract class InventoryMixin {
         }
 
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
-        if (!"blazeborn".equals(origin) || !(
+        if (("blazeborn".equals(origin) || "breezeborn".equals(origin)) && (
                 itemStack.is(ItemTags.HEAD_ARMOR) ||
                         itemStack.is(ItemTags.CHEST_ARMOR) ||
                         itemStack.is(ItemTags.LEG_ARMOR) ||
                         itemStack.is(ItemTags.FOOT_ARMOR)
                 )) {
-            return;
+            ci.cancel();
+
+            player.addItem(itemStack);
         }
-
-        ci.cancel();
-
-        player.addItem(itemStack);
     }
 }
