@@ -5,17 +5,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -29,17 +34,29 @@ import java.util.Random;
 
 
 public class OriginsEvents {
-    public static boolean allowDamage(LivingEntity livingEntity, DamageSource damageSource) {
+    public static boolean allowDamage(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
         String origin = livingEntity.getAttached(Origins.ORIGIN_ATTACHMENT);
         Registry<DamageType> registry = livingEntity.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE);
         if ("blazeborn".equals(origin)) {
-            List<String> blazeBornDamageTypes = List.of(
+            List<String> blazebornDamageTypes = List.of(
                     registry.get(DamageTypes.ON_FIRE).orElseThrow().value().msgId(),
                     registry.get(DamageTypes.FIREBALL).orElseThrow().value().msgId(),
                     registry.get(DamageTypes.HOT_FLOOR).orElseThrow().value().msgId(),
                     registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
             );
-            return !blazeBornDamageTypes.contains(damageSource.type().msgId());
+            return !blazebornDamageTypes.contains(damageSource.type().msgId());
+        }
+        Entity entity = damageSource.getDirectEntity();
+        if (entity == null) {
+            return true;
+        }
+        String sourceOrigin = entity.getAttached(Origins.ORIGIN_ATTACHMENT);
+        if ("blazeborn".equals(sourceOrigin) && entity.getRemainingFireTicks() > 0) {
+            if (!(entity.level() instanceof ServerLevel serverLevel)) {
+                return true;
+            }
+            livingEntity.hurtServer(serverLevel, new DamageSource(damageSource.typeHolder()), damageAmount * 1.5f);
+            return false;
         }
         return true;
     }
@@ -48,7 +65,8 @@ public class OriginsEvents {
         List<ServerPlayer> players = serverLevel.players();
 
         for (ServerPlayer player : players) {
-            Fluid fluid = serverLevel.getBlockState(player.blockPosition()).getFluidState().getType();
+            BlockState block = serverLevel.getBlockState(player.blockPosition());
+            Fluid fluid = block.getFluidState().getType();
             String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
             if ("blazeborn".equals(origin) || "enderian".equals(origin)) {
                 if (fluid == Fluids.FLOWING_WATER || fluid == Fluids.WATER) {
@@ -80,6 +98,19 @@ public class OriginsEvents {
                         player.removeEffect(effect);
                     }
                 }
+                Inventory inventory = player.getInventory();
+                for (int i = 36; i < 40; i++) {
+                    ItemStack item = inventory.getItem(i);
+                    if (item.is(ItemTags.HEAD_ARMOR) || item.is(ItemTags.CHEST_ARMOR) || item.is(ItemTags.LEG_ARMOR) || item.is(ItemTags.FOOT_ARMOR)) {
+                        inventory.setItem(i, ItemStack.EMPTY);
+                        int freeSlot = inventory.getFreeSlot();
+                        if (freeSlot != -1) {
+                            inventory.setItem(freeSlot, item);
+                        } else {
+                            player.drop(item, true);
+                        }
+                    }
+                }
             }
         }
     }
@@ -94,5 +125,26 @@ public class OriginsEvents {
             inventory.add(itemStack);
             player.setAttached(Origins.JOINED_ATTACHMENT, true);
         }
+    }
+
+    public static Player.BedSleepingProblem allowSleeping(Player player, BlockPos blockPos) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+
+        if ("avian".equals(origin) && blockPos.getY() < 110) {
+            player.sendOverlayMessage(Component.literal("Avians can only sleep above Y level 110"));
+            return Player.BedSleepingProblem.OTHER_PROBLEM;
+        }
+
+        return null;
+    }
+
+    public static InteractionResult useItem(Player player) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+
+        if ("avian".equals(origin) && player.getActiveItem().is(ItemTags.MEAT)) {
+            return InteractionResult.FAIL;
+        }
+
+        return InteractionResult.PASS;
     }
 }

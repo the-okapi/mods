@@ -62,13 +62,5 @@ public class OriginsClient implements ClientModInitializer {
         }
 
         graphics.item(new ItemStack(item, 1), 4, 4);
-
-        char[] chars = origin.toCharArray();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.valueOf(chars[0]).toUpperCase());
-        for (int i = 1; i < chars.length; i++) {
-            stringBuilder.append(chars[i]);
-        }
-        graphics.text(minecraft.font, stringBuilder.toString(), 24, 10, 0xFFFFFFFF, true);
     }
 }

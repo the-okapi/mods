@@ -7,8 +7,10 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -44,9 +46,11 @@ public class Origins implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ServerLivingEntityEvents.ALLOW_DAMAGE.register(((livingEntity, damageSource, _) -> OriginsEvents.allowDamage(livingEntity, damageSource)));
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);
 		ServerPlayConnectionEvents.JOIN.register((handler, _, _) -> OriginsEvents.join(handler));
+		EntitySleepEvents.ALLOW_SLEEPING.register(OriginsEvents::allowSleeping);
+		UseItemCallback.EVENT.register((player, _, _) -> OriginsEvents.useItem(player));
 
 		OriginsItems.init();
 	}

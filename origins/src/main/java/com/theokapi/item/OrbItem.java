@@ -1,6 +1,7 @@
 package com.theokapi.item;
 
 import com.theokapi.Origins;
+import com.theokapi.OriginsFunctions;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -8,17 +9,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 
-import java.util.function.BiConsumer;
 
 public class OrbItem extends Item {
     private final String origin;
-    private final BiConsumer<Level, Player> action;
 
-    public OrbItem(Properties properties, String o, @Nullable BiConsumer<Level, Player> a) {
+    public OrbItem(Properties properties, String o) {
         origin = o;
-        action = a;
         super(properties);
     }
 
@@ -26,11 +23,11 @@ public class OrbItem extends Item {
     public @NonNull InteractionResult use(@NonNull Level level, Player player, @NonNull InteractionHand hand) {
         player.playSound(SoundEvents.END_PORTAL_SPAWN);
 
+        OriginsFunctions.callCleanupFunction(player.getAttached(Origins.ORIGIN_ATTACHMENT), player);
+
         player.setAttached(Origins.ORIGIN_ATTACHMENT, origin);
 
-        if (action != null) {
-            action.accept(level, player);
-        }
+        OriginsFunctions.callInitFunction(origin, player);
 
         player.getActiveItem().setCount(0);
 
