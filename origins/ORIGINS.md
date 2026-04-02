@@ -14,7 +14,7 @@ Takes Damage when wearing a pumpkin.
 
 Can breath underwater: permanent water breathing **COMPLETED**
 
-Can see under?
+Can see underwater?
 
 Can break block underwater as if not in water?
 
@@ -30,7 +30,7 @@ Can only hold their breath a limited time while out of water.
 
 Burns in daylight when not in phantom state
 
-3 less hearts
+7 Hearts: **COMPLETED**
 
 ### Elytrian:
 
@@ -59,7 +59,7 @@ Takes damage when in contact with water: ***COMPLETED***
 
 Cannot wear armor: **COMPLETED**
 
-### Avian:
+### Avian: **COMPLETED**
 
 Has permanent slow falling: **COMPLETED**
 
@@ -75,7 +75,7 @@ Can climb walls
 
 Cobweb spawned on attacker when attacked
 
-3 less hearts of life
+7 Hearts: **COMPLETED**
 
 Can only eat meat: **COMPLETED**
 
@@ -93,7 +93,7 @@ Hungers quicker
 
 ### Feline:
 
-No fall damage
+No fall damage: **COMPLETED**
 
 Jump higher while sprinting
 
@@ -101,18 +101,23 @@ Slightly dark vision
 
 Scares creepers away
 
-1 less heart
+9 Hearts: **COMPLETED**
 
 Only mines stone when less than 3 natural stone blocks touching
 
 ### Breezeborn
 
 No armor: **COMPLETED**
+
 Shoots wind charges
+
 Extra Jump
-No fall damage
+
+No fall damage: **COMPLETED**
+
 Double fire damage
-7 Hearts
+
+6 Hearts: **COMPLETED**
 
 ## Config
 

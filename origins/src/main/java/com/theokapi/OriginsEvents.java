@@ -1,6 +1,5 @@
 package com.theokapi;
 
-import com.theokapi.item.OriginsItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -8,7 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,9 +17,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 
 public class OriginsEvents {
@@ -48,6 +43,10 @@ public class OriginsEvents {
                     registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
             );
             return !blazebornDamageTypes.contains(damageSource.type().msgId());
+        }
+        if ("breezeborn".equals(origin) || "feline".equals(origin)) {
+            String fallDamageMsgId = registry.get(DamageTypes.FALL).orElseThrow().value().msgId();
+            return !damageSource.type().msgId().equals(fallDamageMsgId);
         }
         Entity entity = damageSource.getDirectEntity();
         if (entity == null) {
