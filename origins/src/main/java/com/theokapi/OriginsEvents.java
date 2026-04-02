@@ -105,18 +105,6 @@ public class OriginsEvents {
         }
     }
 
-    public static void join(ServerGamePacketListenerImpl handler) {
-        ServerPlayer player = handler.getPlayer();
-        if (player.getAttached(Origins.JOINED_ATTACHMENT) == null) {
-            Random random = new Random();
-            Item orb = OriginsItems.ORBS.get(random.nextInt(OriginsItems.ORBS.size()));
-            ItemStack itemStack = new ItemStack(orb, 1);
-            Inventory inventory = player.getInventory();
-            inventory.add(itemStack);
-            player.setAttached(Origins.JOINED_ATTACHMENT, true);
-        }
-    }
-
     public static Player.BedSleepingProblem allowSleeping(Player player, BlockPos blockPos) {
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
 

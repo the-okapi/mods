@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.serialization.Codec;
 import com.theokapi.item.OriginsItems;
 import net.fabricmc.api.ModInitializer;
@@ -7,13 +8,15 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
@@ -39,17 +42,6 @@ public class Origins implements ModInitializer {
 					)
 	);
 
-	public static final AttachmentType<Boolean> JOINED_ATTACHMENT = AttachmentRegistry.create(
-			Identifier.fromNamespaceAndPath(MOD_ID, "joined_attachment"),
-			booleanBuilder -> booleanBuilder
-					.initializer(() -> false)
-					.copyOnDeath()
-					.syncWith(
-							ByteBufCodecs.BOOL,
-							AttachmentSyncPredicate.targetOnly()
-					)
-	);
-
 	public static final TagKey<Item> ORBS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "orbs"));
 
 	public static final TagKey<Item> ELYTRIAN_NOT_ALLOWED = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "elytrian_not_allowed"));
@@ -60,11 +52,21 @@ public class Origins implements ModInitializer {
 	public void onInitialize() {
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);
-		ServerPlayConnectionEvents.JOIN.register((handler, _, _) -> OriginsEvents.join(handler));
 		EntitySleepEvents.ALLOW_SLEEPING.register(OriginsEvents::allowSleeping);
 		UseItemCallback.EVENT.register((player, _, _) -> OriginsEvents.useItem(player));
 		UseBlockCallback.EVENT.register(((player, level, _, blockHitResult) -> OriginsEvents.useBlock(player, level, blockHitResult)));
 		ServerPlayerEvents.AFTER_RESPAWN.register(((_, newPlayer, _) -> OriginsEvents.afterRespawn(newPlayer)));
+
+		CommandRegistrationCallback.EVENT.register(((dispatcher, _, _) -> {
+			dispatcher.register(Commands.literal("get_origin")
+					.then(Commands.argument("player", EntityArgument.player())
+							.executes(OriginsCommands::originCommand))
+			);
+
+			dispatcher.register(Commands.literal("origin")
+					.then(Commands.argument("origin", StringArgumentType.string())
+							.executes(OriginsCommands::setOriginCommand)));
+		}));
 
 		OriginsItems.init();
 	}
