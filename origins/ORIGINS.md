@@ -34,7 +34,7 @@ Burns in daylight when not in phantom state
 
 ### Elytrian:
 
-**Elytra wings:** curse of binding, curse of vanishing elytra wings, give them on respawn, removes them when changing origin
+Elytra wings by default: **COMPLETED**
 
 Every 30 seconds, can launch into air.
 
@@ -83,11 +83,11 @@ Can only eat meat: **COMPLETED**
 
 9 additional inventory slots that don’t drop on death
 
-Resistance
+Resistance: **COMPLETED**
 
 Can break stone blocks without pickaxe
 
-Cannot use shields
+Cannot use shields: **COMPLETED**
 
 Hungers quicker
 

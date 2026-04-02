@@ -19,6 +19,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -139,6 +140,10 @@ public class OriginsEvents {
         }
 
         if ("elytrian".equals(origin) && item.is(Origins.ELYTRIAN_NOT_ALLOWED)) {
+            return InteractionResult.FAIL;
+        }
+
+        if ("shulk".equals(origin) && item.getItem() == Items.SHIELD) {
             return InteractionResult.FAIL;
         }
 
