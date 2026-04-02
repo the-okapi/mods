@@ -39,8 +39,8 @@ public class OriginsClient implements ClientModInitializer {
             case "enderian":
                 item = Items.ENDER_PEARL;
                 break;
-            case "phantom":
-                item = Items.PHANTOM_MEMBRANE;
+            case "warden":
+                item = Items.SCULK;
                 break;
             case "merling":
                 item = Items.COD;

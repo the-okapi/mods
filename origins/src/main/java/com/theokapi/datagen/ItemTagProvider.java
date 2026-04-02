@@ -23,7 +23,7 @@ public class ItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(OriginsItems.ENDERIAN_ORB)
                 .add(OriginsItems.ELYTRIAN_ORB)
                 .add(OriginsItems.MERLING_ORB)
-                .add(OriginsItems.PHANTOM_ORB)
+                .add(OriginsItems.WARDEN_ORB)
                 .add(OriginsItems.ARACHNID_ORB)
                 .add(OriginsItems.FELINE_ORB)
                 .add(OriginsItems.SHULK_ORB)

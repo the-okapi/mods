@@ -45,7 +45,7 @@ public class OriginsCommands {
                 "avian",
                 "elytrian",
                 "merling",
-                "phantom",
+                "warden",
                 "shulk",
                 "arachnid",
                 "feline",

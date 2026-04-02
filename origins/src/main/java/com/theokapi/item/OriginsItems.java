@@ -32,7 +32,7 @@ public class OriginsItems {
 
     public static final Item MERLING_ORB = registerOrb("merling");
 
-    public static final Item PHANTOM_ORB = registerOrb("phantom");
+    public static final Item WARDEN_ORB = registerOrb("warden");
 
     public static final Item ELYTRIAN_ORB = registerOrb("elytrian");
 
@@ -49,7 +49,7 @@ public class OriginsItems {
             ARACHNID_ORB,
             ENDERIAN_ORB,
             MERLING_ORB,
-            PHANTOM_ORB,
+            WARDEN_ORB,
             ELYTRIAN_ORB,
             ARACHNID_ORB,
             SHULK_ORB,
@@ -70,7 +70,7 @@ public class OriginsItems {
                     creativeModeTab.accept(AVIAN_ORB);
                     creativeModeTab.accept(ENDERIAN_ORB);
                     creativeModeTab.accept(MERLING_ORB);
-                    creativeModeTab.accept(PHANTOM_ORB);
+                    creativeModeTab.accept(WARDEN_ORB);
                     creativeModeTab.accept(ELYTRIAN_ORB);
                     creativeModeTab.accept(ARACHNID_ORB);
                     creativeModeTab.accept(SHULK_ORB);

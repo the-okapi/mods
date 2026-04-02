@@ -106,25 +106,25 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .group("merling_orb")
                         .save(recipeOutput, "merling_orb_converting");
 
-                shaped(RecipeCategory.MISC, OriginsItems.PHANTOM_ORB)
+                shaped(RecipeCategory.MISC, OriginsItems.WARDEN_ORB)
                         .pattern("ebe")
                         .pattern("bgb")
                         .pattern("ebe")
                         .define('e', Items.ENDER_EYE)
                         .define('g', Items.ENCHANTED_GOLDEN_APPLE)
-                        .define('b', Items.PHANTOM_MEMBRANE)
+                        .define('b', Items.SCULK)
                         .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
                         .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
-                        .unlockedBy(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
-                        .group("phantom_orb")
-                        .save(recipeOutput, "phantom_orb_crafting");
+                        .unlockedBy(getHasName(Items.SCULK), has(Items.SCULK))
+                        .group("warden_orb")
+                        .save(recipeOutput, "warden_orb_crafting");
 
-                shapeless(RecipeCategory.MISC, OriginsItems.PHANTOM_ORB)
+                shapeless(RecipeCategory.MISC, OriginsItems.WARDEN_ORB)
                         .requires(Origins.ORBS)
-                        .requires(Items.PHANTOM_MEMBRANE, 4)
-                        .unlockedBy(getHasName(Items.PHANTOM_MEMBRANE), has(Items.PHANTOM_MEMBRANE))
-                        .group("phantom_orb")
-                        .save(recipeOutput, "phantom_orb_converting");
+                        .requires(Items.SCULK, 4)
+                        .unlockedBy(getHasName(Items.SCULK), has(Items.SCULK))
+                        .group("warden_orb")
+                        .save(recipeOutput, "warden_orb_converting");
 
                 shaped(RecipeCategory.MISC, OriginsItems.ELYTRIAN_ORB)
                         .pattern("ebe")

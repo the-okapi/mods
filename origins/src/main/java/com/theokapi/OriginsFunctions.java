@@ -76,7 +76,7 @@ public class OriginsFunctions {
             case null, default:
                 break;
         }
-        List<String> healthAlteringOrigins = List.of("breezeborn", "feline", "arachnid", "phantom");
+        List<String> healthAlteringOrigins = List.of("breezeborn", "feline", "arachnid", "warden");
         if (healthAlteringOrigins.contains(origin)) {
             resetHearts(player);
         }
@@ -105,8 +105,11 @@ public class OriginsFunctions {
             case "feline":
                 maxHealthValue = 18.0;
                 break;
-            case "arachnid", "phantom":
+            case "arachnid":
                 maxHealthValue = 14.0;
+                break;
+            case "warden":
+                maxHealthValue =  20.0;
                 break;
             default:
                 break;

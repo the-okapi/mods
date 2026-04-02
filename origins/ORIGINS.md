@@ -24,13 +24,15 @@ Does not sink underwater
 
 Can only hold their breath a limited time while out of water.
 
-### Phantom:
+### Warden:
 
-**Phantom State:** invisible, walk through solid blocks, get hungry faster.
+Permanent Strength
 
-Burns in daylight when not in phantom state
+Permanent Resistance
 
-7 Hearts: **COMPLETED**
+20 Hearts
+
+Permanent Blindness
 
 ### Elytrian:
 
@@ -118,6 +120,16 @@ No fall damage: **COMPLETED**
 Double fire damage
 
 6 Hearts: **COMPLETED**
+
+### Iron Golem
+
+No armor
+
+15 Hearts
+
+Permanent hero of the village
+
+No sneaking
 
 ## Config
 
