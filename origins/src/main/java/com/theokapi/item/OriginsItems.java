@@ -68,5 +68,7 @@ public class OriginsItems {
                 });
     }
 
-    public static final Item PEARL_ITEM = register("pearl", PearlItem::new, new Item.Properties());
+    public static final Item PEARL_ITEM = register("pearl", Item::new, new Item.Properties());
+
+    public static final Item WIND_CHARGE_ITEM = register("wind_charge", Item::new, new Item.Properties());
 }

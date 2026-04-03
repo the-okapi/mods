@@ -64,6 +64,7 @@ public class Origins implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		PayloadTypeRegistry.serverboundPlay().register(ServerboundPearlPayload.TYPE, ServerboundPearlPayload.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(ServerboundWindChargePayload.TYPE, ServerboundWindChargePayload.CODEC);
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);

@@ -45,6 +45,11 @@ public class OriginsClient implements ClientModInitializer {
                 ItemCooldowns cooldowns = player.getCooldowns();
                 cooldown = cooldowns.getCooldownPercent(OriginsItems.PEARL_ITEM.getDefaultInstance(), 1.0f);
                 break;
+            case "breezeborn":
+                item = Items.BREEZE_ROD;
+                ItemCooldowns breezebornCooldowns = player.getCooldowns();
+                cooldown = breezebornCooldowns.getCooldownPercent(OriginsItems.WIND_CHARGE_ITEM.getDefaultInstance(), 1.0f);
+                break;
             case "warden":
                 item = Items.SCULK;
                 break;
@@ -63,9 +68,6 @@ public class OriginsClient implements ClientModInitializer {
             case "shulk":
                 item = Items.SHULKER_SHELL;
                 break;
-            case "breezeborn":
-                item = Items.BREEZE_ROD;
-                break;
             case "golem":
                 item = Items.IRON_INGOT;
                 break;
@@ -78,6 +80,9 @@ public class OriginsClient implements ClientModInitializer {
         if ("enderian".equals(origin) && cooldown != 0.0f) {
             graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF032620);
             graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFF105E51);
+        } else if ("breezeborn".equals(origin) && cooldown != 0.0f) {
+            graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF576C9D);
+            graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFFBFAFC9);
         }
 
     }

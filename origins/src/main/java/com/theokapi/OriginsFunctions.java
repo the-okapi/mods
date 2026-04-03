@@ -91,7 +91,7 @@ public class OriginsFunctions {
                 golemCleanup(player);
                 break;
             case null, default:
-                break;
+                return;
         }
         List<String> healthAlteringOrigins = List.of("breezeborn", "feline", "arachnid", "warden", "golem");
         if (healthAlteringOrigins.contains(origin)) {
