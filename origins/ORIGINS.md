@@ -1,8 +1,8 @@
 # Origins
 
-### Enderian:
+### Enderian: **COMPLETED**
 
-***Ender Pearl:*** replace active item with ender pearl, use pearl, put origin item back
+***Ender Pearl:*** replace active item with ender pearl, use pearl, put origin item back: **COMPLETED**
 
 Reach Further?: ***COMPLETED***
 

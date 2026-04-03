@@ -67,4 +67,6 @@ public class OriginsItems {
                     creativeModeTab.accept(REVERSE_ORB);
                 });
     }
+
+    public static final Item PEARL_ITEM = register("pearl", PearlItem::new, new Item.Properties());
 }

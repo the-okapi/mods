@@ -49,25 +49,27 @@ public class OriginsEvents {
                 registry.get(DamageTypes.HOT_FLOOR).orElseThrow().value().msgId(),
                 registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
         );
+        String damageSourceMsgId = damageSource.type().msgId();
         if ("blazeborn".equals(origin)) {
-            return !blazebornDamageTypes.contains(damageSource.type().msgId());
+            return !blazebornDamageTypes.contains(damageSourceMsgId);
         }
         if ("breezeborn".equals(origin) || "feline".equals(origin)) {
             String fallDamageMsgId = registry.get(DamageTypes.FALL).orElseThrow().value().msgId();
-            if (damageSource.type().msgId().equals(fallDamageMsgId)) {
+            if (damageSourceMsgId.equals(fallDamageMsgId)) {
                 return false;
             }
         }
         Holder<DamageType> GENERIC_DAMAGE_TYPE = registry.get(DamageTypes.GENERIC).orElseThrow();
         if ("breezeborn".equals(origin)) {
-            if (blazebornDamageTypes.contains(damageSource.type().msgId())) {
+            if (blazebornDamageTypes.contains(damageSourceMsgId)) {
                 livingEntity.hurtServer(level, new DamageSource(GENERIC_DAMAGE_TYPE), damageAmount * 2);
                 return false;
             }
         }
         if ("elytrian".equals(origin)) {
             String kineticDamageMsgId = registry.get(DamageTypes.FLY_INTO_WALL).orElseThrow().value().msgId();
-            if (damageSource.type().msgId().equals(kineticDamageMsgId)) {
+            String fallDamageMsgId = registry.get(DamageTypes.FALL).orElseThrow().value().msgId();
+            if (damageSourceMsgId.equals(kineticDamageMsgId) || damageSourceMsgId.equals(fallDamageMsgId)) {
                 livingEntity.hurtServer(level, new DamageSource(GENERIC_DAMAGE_TYPE), damageAmount * 1.5f);
                 return false;
             }

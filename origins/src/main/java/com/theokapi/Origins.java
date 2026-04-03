@@ -1,6 +1,5 @@
 package com.theokapi;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.serialization.Codec;
 import com.theokapi.item.OriginsItems;
@@ -9,7 +8,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -18,7 +16,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.minecraft.client.KeyMapping;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.registries.Registries;
@@ -28,7 +26,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,18 +63,7 @@ public class Origins implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		KeyMapping.Category CATEGORY = KeyMapping.Category.register(
-				Identifier.fromNamespaceAndPath(MOD_ID, "origins_category")
-		);
-
-		KeyMapping originAbility = KeyMappingHelper.registerKeyMapping(
-				new KeyMapping(
-						"key.origins.origin_ability",
-						InputConstants.Type.KEYSYM,
-						GLFW.GLFW_KEY_C,
-						CATEGORY
-				)
-		);
+		PayloadTypeRegistry.serverboundPlay().register(ServerboundPearlPayload.TYPE, ServerboundPearlPayload.CODEC);
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);
@@ -99,5 +85,6 @@ public class Origins implements ModInitializer {
 		}));
 
 		OriginsItems.init();
+		OriginsAbilities.init();
 	}
 }
