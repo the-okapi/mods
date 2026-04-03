@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -17,7 +18,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -34,31 +37,58 @@ import java.util.List;
 
 public class OriginsEvents {
     public static boolean allowDamage(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
+        if (!(livingEntity.level() instanceof ServerLevel level)) {
+            return true;
+        }
+
         String origin = livingEntity.getAttached(Origins.ORIGIN_ATTACHMENT);
         Registry<DamageType> registry = livingEntity.level().registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE);
+        List<String> blazebornDamageTypes = List.of(
+                registry.get(DamageTypes.ON_FIRE).orElseThrow().value().msgId(),
+                registry.get(DamageTypes.FIREBALL).orElseThrow().value().msgId(),
+                registry.get(DamageTypes.HOT_FLOOR).orElseThrow().value().msgId(),
+                registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
+        );
         if ("blazeborn".equals(origin)) {
-            List<String> blazebornDamageTypes = List.of(
-                    registry.get(DamageTypes.ON_FIRE).orElseThrow().value().msgId(),
-                    registry.get(DamageTypes.FIREBALL).orElseThrow().value().msgId(),
-                    registry.get(DamageTypes.HOT_FLOOR).orElseThrow().value().msgId(),
-                    registry.get(DamageTypes.IN_FIRE).orElseThrow().value().msgId()
-            );
             return !blazebornDamageTypes.contains(damageSource.type().msgId());
         }
         if ("breezeborn".equals(origin) || "feline".equals(origin)) {
             String fallDamageMsgId = registry.get(DamageTypes.FALL).orElseThrow().value().msgId();
-            return !damageSource.type().msgId().equals(fallDamageMsgId);
+            if (damageSource.type().msgId().equals(fallDamageMsgId)) {
+                return false;
+            }
+        }
+        Holder<DamageType> GENERIC_DAMAGE_TYPE = registry.get(DamageTypes.GENERIC).orElseThrow();
+        if ("breezeborn".equals(origin)) {
+            if (blazebornDamageTypes.contains(damageSource.type().msgId())) {
+                livingEntity.hurtServer(level, new DamageSource(GENERIC_DAMAGE_TYPE), damageAmount * 2);
+                return false;
+            }
+        }
+        if ("elytrian".equals(origin)) {
+            String kineticDamageMsgId = registry.get(DamageTypes.FLY_INTO_WALL).orElseThrow().value().msgId();
+            if (damageSource.type().msgId().equals(kineticDamageMsgId)) {
+                livingEntity.hurtServer(level, new DamageSource(GENERIC_DAMAGE_TYPE), damageAmount * 1.5f);
+                return false;
+            }
         }
         Entity entity = damageSource.getDirectEntity();
         if (entity == null) {
             return true;
         }
+        if (!(entity.level() instanceof ServerLevel serverLevel)) {
+            return true;
+        }
+        if ("arachnid".equals(origin)) {
+            serverLevel.setBlock(entity.blockPosition(), Blocks.COBWEB.defaultBlockState(), 3);
+        }
         String sourceOrigin = entity.getAttached(Origins.ORIGIN_ATTACHMENT);
         if ("blazeborn".equals(sourceOrigin) && entity.getRemainingFireTicks() > 0) {
-            if (!(entity.level() instanceof ServerLevel serverLevel)) {
-                return true;
-            }
             livingEntity.hurtServer(serverLevel, new DamageSource(damageSource.typeHolder()), damageAmount * 1.5f);
+            return false;
+        }
+        if ("elytrian".equals(sourceOrigin) && !entity.onGround()) {
+            livingEntity.hurtServer(serverLevel, new DamageSource(damageSource.typeHolder()), damageAmount * 2);
             return false;
         }
         return true;
@@ -100,6 +130,18 @@ public class OriginsEvents {
                     if (blazebornImmune.contains(effect.value())) {
                         player.removeEffect(effect);
                     }
+                }
+            }
+            if ("enderian".equals(origin)) {
+                Inventory inventory = player.getInventory();
+
+                ItemStack headItem = inventory.getItem(39);
+                ItemStack activeItem = player.getActiveItem();
+
+                if (headItem.is(Origins.PUMPKIN)  || activeItem.is(Origins.PUMPKIN)) {
+                    player.hurtServer(serverLevel, new DamageSource(
+                            serverLevel.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).get(DamageTypes.GENERIC.identifier()).orElseThrow()
+                    ), 1f);
                 }
             }
         }
@@ -165,6 +207,26 @@ public class OriginsEvents {
         if (origin != null) {
             Origins.LOGGER.info("respawn");
             OriginsFunctions.callInitFunction(origin, player);
+        }
+    }
+
+    private static Item convertStone(Item stoneFrom) {
+        if (stoneFrom == Items.STONE) {
+            return Items.COBBLESTONE;
+        } else if (stoneFrom == Items.DEEPSLATE) {
+            return Items.COBBLED_DEEPSLATE;
+        }
+        return stoneFrom;
+    }
+
+    public static void afterBlockBreak(Player player, BlockState blockState) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+        if (!"shulk".equals(origin)) {
+            return;
+        }
+        if (blockState.is(BlockTags.BASE_STONE_OVERWORLD)) {
+            ItemStack item = new ItemStack(convertStone(blockState.getBlock().asItem()));
+            Origins.giveItem(player, item);
         }
     }
 }

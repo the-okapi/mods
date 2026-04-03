@@ -29,5 +29,8 @@ public class LangProvider extends FabricLanguageProvider {
         translationBuilder.add("tag.item.origins.orbs", "Orbs");
         translationBuilder.add("tag.item.origins.elytrian_not_allowed", "Elytrian Not Allowed");
         translationBuilder.add("tag.item.origins.foods", "Foods");
+
+        translationBuilder.add("key.category.origins.origins_category", "Origins");
+        translationBuilder.add("key.origins.origin_ability", "Origin Ability");
     }
 }

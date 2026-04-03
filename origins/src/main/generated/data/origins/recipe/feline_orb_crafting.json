@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "feline_orb",
+  "key": {
+    "b": "minecraft:string",
+    "e": "minecraft:ender_eye",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "ebe",
+    "bgb",
+    "ebe"
+  ],
+  "result": {
+    "id": "origins:feline_orb"
+  }
+}

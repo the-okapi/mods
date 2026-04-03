@@ -28,16 +28,9 @@ abstract class InventoryMixin {
 
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
 
-        Inventory inventory = player.getInventory();
-
         if ("shulk".equals(origin)) {
             if (itemStack.getItem() == Items.SHIELD && slot == 40) {
-                int freeSlot = inventory.getFreeSlot();
-                if (freeSlot != -1) {
-                    inventory.add(freeSlot, itemStack);
-                } else {
-                    player.drop(itemStack, true);
-                }
+                Origins.giveItem(player, itemStack);
             }
             return;
         }
@@ -49,21 +42,11 @@ abstract class InventoryMixin {
                         itemStack.is(ItemTags.FOOT_ARMOR)
                 )) {
             ci.cancel();
-            int freeSlot = inventory.getFreeSlot();
-            if (freeSlot != -1) {
-                inventory.add(freeSlot, itemStack);
-            } else {
-                player.drop(itemStack, true);
-            }
+            Origins.giveItem(player, itemStack);
         }
         if ("elytrian".equals(origin) && itemStack.is(Origins.ELYTRIAN_NOT_ALLOWED)) {
             ci.cancel();
-            int freeSlot = inventory.getFreeSlot();
-            if (freeSlot != -1) {
-                inventory.add(freeSlot, itemStack);
-            } else {
-                player.drop(itemStack, true);
-            }
+            Origins.giveItem(player, itemStack);
         }
 
     }

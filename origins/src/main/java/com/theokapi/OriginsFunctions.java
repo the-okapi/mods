@@ -53,6 +53,11 @@ public class OriginsFunctions {
             case "elytrian":
                 elytrianInit(player);
                 break;
+            case "warden":
+                wardenInit(player);
+                break;
+            case "enderian":
+                enderianInit(player);
             case null, default:
                 break;
         }
@@ -73,6 +78,11 @@ public class OriginsFunctions {
             case "elytrian":
                 elytrianCleanup(player);
                 break;
+            case "warden":
+                wardenCleanup(player);
+                break;
+            case "enderian":
+                enderianCleanup(player);
             case null, default:
                 break;
         }
@@ -109,7 +119,7 @@ public class OriginsFunctions {
                 maxHealthValue = 14.0;
                 break;
             case "warden":
-                maxHealthValue =  20.0;
+                maxHealthValue =  40.0;
                 break;
             default:
                 break;
@@ -119,28 +129,33 @@ public class OriginsFunctions {
         }
     }
 
+    private static void enderianInit(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
+        if (attributeInstance == null) {
+            return;
+        }
+        attributeInstance.setBaseValue(6.5);
+    }
+
+    private static void enderianCleanup(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
+        if (attributeInstance == null) {
+            return;
+        }
+        attributeInstance.setBaseValue(4.5);
+    }
+
     private static void elytrianInit(Player player) {
         Inventory inventory = player.getInventory();
         for (int i = 36; i < 40; i++) {
             ItemStack item = inventory.getItem(i);
             if (item.is(Origins.ELYTRIAN_NOT_ALLOWED)) {
-                inventory.setItem(i, ItemStack.EMPTY);
-                int freeSlot = inventory.getFreeSlot();
-                if (freeSlot != -1) {
-                    inventory.setItem(freeSlot, item);
-                } else {
-                    player.drop(item, true);
-                }
+                Origins.giveItem(player, item);
             }
         }
         ItemStack item = inventory.getItem(38);
         if (item != ItemStack.EMPTY) {
-            int freeSlot = inventory.getFreeSlot();
-            if (freeSlot != -1) {
-                inventory.setItem(freeSlot, item);
-            } else {
-                player.drop(item, true);
-            }
+            Origins.giveItem(player, item);
         }
         ItemStack elytraItem = new ItemStack(Items.ELYTRA);
         Registry<Enchantment> registry = player.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
@@ -169,12 +184,28 @@ public class OriginsFunctions {
         player.removeEffect(MobEffects.SLOW_FALLING);
     }
 
+    private static void wardenInit(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, -1, 1, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, -1, 1, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, -1, 0, true, false, false));
+    }
+
+    private static void wardenCleanup(Player player) {
+        player.removeEffect(MobEffects.STRENGTH);
+        player.removeEffect(MobEffects.RESISTANCE);
+        player.removeEffect(MobEffects.BLINDNESS);
+        player.removeEffect(MobEffects.SLOWNESS);
+    }
+
     private static void shulkInit(Player player) {
         player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.HUNGER, -1, 0, true, false, false));
     }
 
     private static void shulkCleanup(Player player) {
         player.removeEffect(MobEffects.RESISTANCE);
+        player.removeEffect(MobEffects.HUNGER);
     }
 
     private static void merlingInit(Player player) {
@@ -192,12 +223,7 @@ public class OriginsFunctions {
         ItemStack item = inventory.getItem(40);
         if (item.getItem() == Items.SHIELD) {
             inventory.setItem(40, ItemStack.EMPTY);
-            int freeSlot = inventory.getFreeSlot();
-            if (freeSlot != -1) {
-                inventory.setItem(freeSlot, item);
-            } else {
-                player.drop(item, true);
-            }
+            Origins.giveItem(player, item);
         }
     }
 
@@ -207,12 +233,7 @@ public class OriginsFunctions {
             ItemStack item = inventory.getItem(i);
             if (item.is(ItemTags.HEAD_ARMOR) || item.is(ItemTags.CHEST_ARMOR) || item.is(ItemTags.LEG_ARMOR) || item.is(ItemTags.FOOT_ARMOR)) {
                 inventory.setItem(i, ItemStack.EMPTY);
-                int freeSlot = inventory.getFreeSlot();
-                if (freeSlot != -1) {
-                    inventory.setItem(freeSlot, item);
-                } else {
-                    player.drop(item, true);
-                }
+                Origins.giveItem(player, item);
             }
         }
     }

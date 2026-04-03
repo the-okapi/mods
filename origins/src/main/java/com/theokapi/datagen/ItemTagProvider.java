@@ -45,6 +45,14 @@ public class ItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(Items.NETHERITE_BOOTS)
                 .setReplace(true);
 
+        valueLookupBuilder(Origins.PUMPKIN)
+                .add(Items.PUMPKIN)
+                .add(Items.PUMPKIN_PIE)
+                .add(Items.PUMPKIN_SEEDS)
+                .add(Items.CARVED_PUMPKIN)
+                .add(Items.JACK_O_LANTERN)
+                .setReplace(true);
+
         valueLookupBuilder(Origins.FOODS)
                 .add(Items.APPLE)
                 .add(Items.BAKED_POTATO)

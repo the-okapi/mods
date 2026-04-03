@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.serialization.Codec;
 import com.theokapi.item.OriginsItems;
@@ -8,20 +9,26 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,14 +55,37 @@ public class Origins implements ModInitializer {
 
 	public static final TagKey<Item> FOODS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "foods"));
 
+	public static final TagKey<Item> PUMPKIN = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "pumpkin"));
+
+	public static <T extends Player> void giveItem(T player, ItemStack item) {
+		boolean addedItem = player.addItem(item);
+		if (!addedItem) {
+			player.drop(item, true);
+		}
+	}
+
 	@Override
 	public void onInitialize() {
+		KeyMapping.Category CATEGORY = KeyMapping.Category.register(
+				Identifier.fromNamespaceAndPath(MOD_ID, "origins_category")
+		);
+
+		KeyMapping originAbility = KeyMappingHelper.registerKeyMapping(
+				new KeyMapping(
+						"key.origins.origin_ability",
+						InputConstants.Type.KEYSYM,
+						GLFW.GLFW_KEY_C,
+						CATEGORY
+				)
+		);
+
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);
 		EntitySleepEvents.ALLOW_SLEEPING.register(OriginsEvents::allowSleeping);
 		UseItemCallback.EVENT.register((player, _, _) -> OriginsEvents.useItem(player));
 		UseBlockCallback.EVENT.register(((player, level, _, blockHitResult) -> OriginsEvents.useBlock(player, level, blockHitResult)));
 		ServerPlayerEvents.AFTER_RESPAWN.register(((_, newPlayer, _) -> OriginsEvents.afterRespawn(newPlayer)));
+		PlayerBlockBreakEvents.AFTER.register(((_, player, _, state, _) -> OriginsEvents.afterBlockBreak(player, state)));
 
 		CommandRegistrationCallback.EVENT.register(((dispatcher, _, _) -> {
 			dispatcher.register(Commands.literal("get_origin")

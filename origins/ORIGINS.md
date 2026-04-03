@@ -2,23 +2,23 @@
 
 ### Enderian:
 
-**Ender Pearl:** replace active item with ender pearl, use pearl, put origin item back
+***Ender Pearl:*** replace active item with ender pearl, use pearl, put origin item back
 
-Reach Further?
+Reach Further?: ***COMPLETED***
 
 Takes Damage when in contact with water: ***COMPLETED***
 
-Takes Damage when wearing a pumpkin.
+Takes Damage when wearing a pumpkin: ***COMPLETED***
 
 ### Merling:
 
-Can breath underwater: permanent water breathing **COMPLETED**
+Can breath underwater: permanent water breathing ***COMPLETED***
 
 Can see underwater?
 
 Can break block underwater as if not in water?
 
-Has increased swim speed **COMPLETED**
+Has increased swim speed ***COMPLETED***
 
 Does not sink underwater
 
@@ -26,76 +26,80 @@ Can only hold their breath a limited time while out of water.
 
 ### Warden:
 
-Permanent Strength
+Permanent Strength 2: ***COMPLETED***
 
-Permanent Resistance
+Permanent Resistance: ***COMPLETED***
 
-20 Hearts
+20 Hearts: ***COMPLETED***
 
-Permanent Blindness
+Permanent Blindness: ***COMPLETED***
+
+Sonic Boom Attack
+
+Slowness: ***COMPLETED***
 
 ### Elytrian:
 
-Elytra wings by default: **COMPLETED**
+Elytra wings by default: ***COMPLETED***
 
 Every 30 seconds, can launch into air.
 
-Double damage while in elytra flight
+Double damage while in elytra flight: ***COMPLETED***
 
-Can only wear light armour **COMPLETED**
+Can only wear light armour ***COMPLETED***
 
-More kinetic damage
+More kinetic damage: ***COMPLETED***
 
 Slowness and Weakness in places with low ceilings
 
 
-### Blazeborn: **COMPLETED**
+### Blazeborn: ***COMPLETED***
 
 Immune to fire and lava  damage: ***COMPLETED***
 
-Deals more damage while burning: **COMPLETED**
+Deals more damage while burning: ***COMPLETED***
 
 Is immune to poison and hunger: ***COMPLETED***
 
 Takes damage when in contact with water: ***COMPLETED***
 
-Cannot wear armor: **COMPLETED**
+Cannot wear armor: ***COMPLETED***
 
-### Avian: **COMPLETED**
+### Avian: ***COMPLETED***
 
-Has permanent slow falling: **COMPLETED**
+Has permanent slow falling: ***COMPLETED***
 
-Has permanent speed: **COMPLETED**
+Has permanent speed: ***COMPLETED***
 
-Needs to sleet at high altitudes: **COMPLETED**
+Needs to sleet at high altitudes: ***COMPLETED***
 
-Can’t eat meat: on use item, check if item is meat, if yes, fail: **COMPLETED**
+Can’t eat meat: on use item, check if item is meat, if yes, fail: ***COMPLETED***
 
 ### Arachnid:
 
 Can climb walls
 
-Cobweb spawned on attacker when attacked
+Cobweb spawned on attacker when attacked: ***COMPLETED***
 
-7 Hearts: **COMPLETED**
+7 Hearts: ***COMPLETED***
 
-Can only eat meat: **COMPLETED**
+Can only eat meat: ***COMPLETED***
 
 ### Shulk:
 
 9 additional inventory slots that don’t drop on death
 
-Resistance: **COMPLETED**
+Resistance: ***COMPLETED***
 
-Can break stone blocks without pickaxe
+Can break stone blocks without pickaxe: ***COMPLETED***
 
-Cannot use shields: **COMPLETED**
+Cannot use shields: ***COMPLETED***
 
-Hungers quicker
+Hungers quicker: ***COMPLETED***
 
 ### Feline:
 
-No fall damage: **COMPLETED**
+No fall damage: ***COMPLETED***
 
 Jump higher while sprinting
 
@@ -103,23 +107,23 @@ Slightly dark vision
 
 Scares creepers away
 
-9 Hearts: **COMPLETED**
+9 Hearts: ***COMPLETED***
 
 Only mines stone when less than 3 natural stone blocks touching
 
 ### Breezeborn
 
-No armor: **COMPLETED**
+No armor: ***COMPLETED***
 
 Shoots wind charges
 
-Extra Jump
+Jump higher when sprinting
 
-No fall damage: **COMPLETED**
+No fall damage: ***COMPLETED***
 
-Double fire damage
+Double fire damage: ***COMPLETED***
 
-6 Hearts: **COMPLETED**
+6 Hearts: ***COMPLETED***
 
 ### Iron Golem
 

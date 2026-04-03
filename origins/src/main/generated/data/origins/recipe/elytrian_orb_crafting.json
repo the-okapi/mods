@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "elytrian_orb",
+  "key": {
+    "b": "minecraft:dragon_head",
+    "e": "minecraft:ender_eye",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "ebe",
+    "bgb",
+    "ebe"
+  ],
+  "result": {
+    "id": "origins:elytrian_orb"
+  }
+}

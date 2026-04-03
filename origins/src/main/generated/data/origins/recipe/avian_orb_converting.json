@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "avian_orb",
+  "ingredients": [
+    "#origins:orbs",
+    "minecraft:feather",
+    "minecraft:feather",
+    "minecraft:feather",
+    "minecraft:feather"
+  ],
+  "result": {
+    "id": "origins:avian_orb"
+  }
+}
