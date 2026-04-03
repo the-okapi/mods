@@ -125,15 +125,15 @@ Double fire damage: ***COMPLETED***
 
 6 Hearts: ***COMPLETED***
 
-### Iron Golem
+### Iron Golem: **COMPLETED**
 
-No armor
+No armor: **COMPLETED**
 
-15 Hearts
+Permanent Slowness: **COMPLETED**
 
-Permanent hero of the village
+17 Hearts: **COMPLETED**
 
-No sneaking
+Permanent hero of the village: **COMPLETED**
 
 ## Config
 

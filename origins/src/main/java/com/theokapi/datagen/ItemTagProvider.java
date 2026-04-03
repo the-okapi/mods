@@ -28,6 +28,7 @@ public class ItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
                 .add(OriginsItems.FELINE_ORB)
                 .add(OriginsItems.SHULK_ORB)
                 .add(OriginsItems.BREEZEBORN_ORB)
+                .add(OriginsItems.GOLEM_ORB)
                 .setReplace(true);
 
         valueLookupBuilder(Origins.ELYTRIAN_NOT_ALLOWED)

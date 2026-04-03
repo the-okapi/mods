@@ -58,6 +58,9 @@ public class OriginsFunctions {
                 break;
             case "enderian":
                 enderianInit(player);
+                break;
+            case "golem":
+                golemInit(player);
             case null, default:
                 break;
         }
@@ -83,10 +86,14 @@ public class OriginsFunctions {
                 break;
             case "enderian":
                 enderianCleanup(player);
+                break;
+            case "golem":
+                golemCleanup(player);
+                break;
             case null, default:
                 break;
         }
-        List<String> healthAlteringOrigins = List.of("breezeborn", "feline", "arachnid", "warden");
+        List<String> healthAlteringOrigins = List.of("breezeborn", "feline", "arachnid", "warden", "golem");
         if (healthAlteringOrigins.contains(origin)) {
             resetHearts(player);
         }
@@ -121,6 +128,8 @@ public class OriginsFunctions {
             case "warden":
                 maxHealthValue =  40.0;
                 break;
+            case "golem":
+                maxHealthValue = 34.0;
             default:
                 break;
         }
@@ -182,6 +191,16 @@ public class OriginsFunctions {
     private static void avianCleanup(Player player) {
         player.removeEffect(MobEffects.SPEED);
         player.removeEffect(MobEffects.SLOW_FALLING);
+    }
+
+    private static void golemInit(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, -1, 0, true, false, false));
+    }
+
+    private static void golemCleanup(Player player) {
+        player.removeEffect(MobEffects.HERO_OF_THE_VILLAGE);
+        player.removeEffect(MobEffects.SLOWNESS);
     }
 
     private static void wardenInit(Player player) {

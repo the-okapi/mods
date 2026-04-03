@@ -225,6 +225,26 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.BREEZE_ROD), has(Items.BREEZE_ROD))
                         .group("breezeborn_orb")
                         .save(recipeOutput, "breezeborn_orb_converting");
+
+                shaped(RecipeCategory.MISC, OriginsItems.GOLEM_ORB)
+                        .pattern("ebe")
+                        .pattern("bgb")
+                        .pattern("ebe")
+                        .define('e', Items.ENDER_EYE)
+                        .define('g', Items.ENCHANTED_GOLDEN_APPLE)
+                        .define('b', Items.IRON_INGOT)
+                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
+                        .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
+                        .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                        .group("golem_orb")
+                        .save(recipeOutput, "golem_orb_crafting");
+
+                shapeless(RecipeCategory.MISC, OriginsItems.GOLEM_ORB)
+                        .requires(Origins.ORBS)
+                        .requires(Items.IRON_INGOT, 4)
+                        .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                        .group("golem_orb")
+                        .save(recipeOutput, "golem_orb_converting");
             }
         };
     }

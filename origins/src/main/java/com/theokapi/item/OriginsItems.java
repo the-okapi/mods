@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 
-import java.util.List;
 import java.util.function.Function;
 
 public class OriginsItems {
@@ -44,18 +43,7 @@ public class OriginsItems {
 
     public static final Item BREEZEBORN_ORB = registerOrb("breezeborn");
 
-    public static final List<Item> ORBS = List.of(
-            BLAZEBORN_ORB,
-            ARACHNID_ORB,
-            ENDERIAN_ORB,
-            MERLING_ORB,
-            WARDEN_ORB,
-            ELYTRIAN_ORB,
-            ARACHNID_ORB,
-            SHULK_ORB,
-            FELINE_ORB,
-            BREEZEBORN_ORB
-    );
+    public static final Item GOLEM_ORB = registerOrb("golem");
 
     public static final Item REVERSE_ORB =
             register("reverse_orb", properties -> new OrbItem(properties, ""), new Item.Properties().stacksTo(1));
@@ -65,16 +53,17 @@ public class OriginsItems {
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .register(creativeModeTab -> {
+                    creativeModeTab.accept(ARACHNID_ORB);
+                    creativeModeTab.accept(AVIAN_ORB);
                     creativeModeTab.accept(BLAZEBORN_ORB);
                     creativeModeTab.accept(BREEZEBORN_ORB);
-                    creativeModeTab.accept(AVIAN_ORB);
-                    creativeModeTab.accept(ENDERIAN_ORB);
-                    creativeModeTab.accept(MERLING_ORB);
-                    creativeModeTab.accept(WARDEN_ORB);
                     creativeModeTab.accept(ELYTRIAN_ORB);
-                    creativeModeTab.accept(ARACHNID_ORB);
-                    creativeModeTab.accept(SHULK_ORB);
+                    creativeModeTab.accept(ENDERIAN_ORB);
                     creativeModeTab.accept(FELINE_ORB);
+                    creativeModeTab.accept(GOLEM_ORB);
+                    creativeModeTab.accept(MERLING_ORB);
+                    creativeModeTab.accept(SHULK_ORB);
+                    creativeModeTab.accept(WARDEN_ORB);
                     creativeModeTab.accept(REVERSE_ORB);
                 });
     }

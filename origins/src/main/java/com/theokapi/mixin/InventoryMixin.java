@@ -35,7 +35,7 @@ abstract class InventoryMixin {
             return;
         }
 
-        if (("blazeborn".equals(origin) || "breezeborn".equals(origin)) && (
+        if (("blazeborn".equals(origin) || "breezeborn".equals(origin) || "golem".equals(origin)) && (
                 itemStack.is(ItemTags.HEAD_ARMOR) ||
                         itemStack.is(ItemTags.CHEST_ARMOR) ||
                         itemStack.is(ItemTags.LEG_ARMOR) ||

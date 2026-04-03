@@ -60,6 +60,9 @@ public class OriginsClient implements ClientModInitializer {
             case "breezeborn":
                 item = Items.BREEZE_ROD;
                 break;
+            case "golem":
+                item = Items.IRON_INGOT;
+                break;
             case null, default:
                 return;
         }

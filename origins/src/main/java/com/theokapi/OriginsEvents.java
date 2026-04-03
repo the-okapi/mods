@@ -172,7 +172,7 @@ public class OriginsEvents {
         }
 
 
-        if (("blazeborn".equals(origin) || "breezeborn".equals(origin)) && (
+        if (("blazeborn".equals(origin) || "breezeborn".equals(origin) || "golem".equals(origin)) && (
                 item.is(ItemTags.HEAD_ARMOR) ||
                         item.is(ItemTags.CHEST_ARMOR) ||
                         item.is(ItemTags.LEG_ARMOR) ||

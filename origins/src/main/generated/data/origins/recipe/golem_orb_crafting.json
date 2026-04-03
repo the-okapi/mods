@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "golem_orb",
+  "key": {
+    "b": "minecraft:iron_ingot",
+    "e": "minecraft:ender_eye",
+    "g": "minecraft:enchanted_golden_apple"
+  },
+  "pattern": [
+    "ebe",
+    "bgb",
+    "ebe"
+  ],
+  "result": {
+    "id": "origins:golem_orb"
+  }
+}
