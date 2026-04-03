@@ -115,7 +115,7 @@ Only mines stone when less than 3 natural stone blocks touching
 
 No armor: ***COMPLETED***
 
-Shoots wind charges
+Shoots wind charges: **COMPLETED**
 
 Jump higher when sprinting
 
