@@ -7,6 +7,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -27,6 +28,9 @@ public class MoneyItems {
     public static final Item FIFTY_DOLLARS = register("fifty_dollars", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
     public static final Item ONE_HUNDRED_DOLLARS = register("one_hundred_dollars", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
 
+    public static final FoodProperties CHEESE_FOOD_PROPERTIES = new FoodProperties.Builder().nutrition(5).saturationModifier(6).build();
+    public static final Item CHEESE = register("cheese", Item::new, new Item.Properties().food(CHEESE_FOOD_PROPERTIES));
+
     public static void init() {
         Money.LOGGER.info("Initializing Items");
 
@@ -39,5 +43,8 @@ public class MoneyItems {
                     creativeModeTab.accept(FIFTY_DOLLARS);
                     creativeModeTab.accept(ONE_HUNDRED_DOLLARS);
                 });
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((creativeModeTab) -> creativeModeTab.accept(CHEESE));
     }
 }

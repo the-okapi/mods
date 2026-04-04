@@ -24,25 +24,16 @@ import java.util.List;
 
 public class OriginsFunctions {
     public static void callInitFunction(@Nullable String origin, Player player) {
-        if ("avian".equals(origin)) {
-            avianInit(player);
-        }
-        if ("breezeborn".equals(origin) || "blazeborn".equals(origin)) {
-            removeArmorInit(player);
-        }
-        if ("merling".equals(origin)) {
-            merlingInit(player);
-        }
-        if ("shulk".equals(origin)) {
-            removeShieldInit(player);
-            shulkInit(player);
-        }
         switch (origin) {
             case "avian":
                 avianInit(player);
                 break;
-            case "breezeborn", "blazeborn":
+            case "blazeborn":
                 removeArmorInit(player);
+                break;
+            case "breezeborn":
+                removeArmorInit(player);
+                biggerJumpInit(player);
                 break;
             case "merling":
                 merlingInit(player);
@@ -50,6 +41,7 @@ public class OriginsFunctions {
             case "shulk":
                 removeShieldInit(player);
                 shulkInit(player);
+                break;
             case "elytrian":
                 elytrianInit(player);
                 break;
@@ -61,6 +53,10 @@ public class OriginsFunctions {
                 break;
             case "golem":
                 golemInit(player);
+                break;
+            case "feline":
+                biggerJumpInit(player);
+                break;
             case null, default:
                 break;
         }
@@ -89,6 +85,9 @@ public class OriginsFunctions {
                 break;
             case "golem":
                 golemCleanup(player);
+                break;
+            case "breezeborn", "feline":
+                biggerJumpCleanup(player);
                 break;
             case null, default:
                 return;
@@ -193,17 +192,46 @@ public class OriginsFunctions {
         player.removeEffect(MobEffects.SLOW_FALLING);
     }
 
+    private static void biggerJumpInit(Player player) {
+        player.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, -1, 3, true, false, false));
+    }
+
+    private static void biggerJumpCleanup(Player player) {
+        player.removeEffect(MobEffects.JUMP_BOOST);
+    }
+
     private static void golemInit(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SCALE);
+        if (attributeInstance == null) {
+            return;
+        }
+
+        attributeInstance.setBaseValue(1.5);
+
         player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, -1, 0, true, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, -1, 0, true, false, false));
     }
 
     private static void golemCleanup(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SCALE);
+        if (attributeInstance == null) {
+            return;
+        }
+
+        attributeInstance.setBaseValue(1);
+
         player.removeEffect(MobEffects.HERO_OF_THE_VILLAGE);
         player.removeEffect(MobEffects.SLOWNESS);
     }
 
     private static void wardenInit(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SCALE);
+        if (attributeInstance == null) {
+            return;
+        }
+
+        attributeInstance.setBaseValue(1.5);
+
         player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, -1, 1, true, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.STRENGTH, -1, 1, true, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, -1, 0, true, false, false));
@@ -211,6 +239,13 @@ public class OriginsFunctions {
     }
 
     private static void wardenCleanup(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SCALE);
+        if (attributeInstance == null) {
+            return;
+        }
+
+        attributeInstance.setBaseValue(1);
+
         player.removeEffect(MobEffects.STRENGTH);
         player.removeEffect(MobEffects.RESISTANCE);
         player.removeEffect(MobEffects.BLINDNESS);
@@ -228,11 +263,23 @@ public class OriginsFunctions {
     }
 
     private static void merlingInit(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SUBMERGED_MINING_SPEED);
+        if (attributeInstance == null) {
+            return;
+        }
+        attributeInstance.setBaseValue(1);
+
         player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, -1, 0, true, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, -1, 0, true, false, false));
     }
 
     private static void merlingCleanup(Player player) {
+        AttributeInstance attributeInstance = player.getAttribute(Attributes.SUBMERGED_MINING_SPEED);
+        if (attributeInstance == null) {
+            return;
+        }
+        attributeInstance.setBaseValue(0.2);
+
         player.removeEffect(MobEffects.DOLPHINS_GRACE);
         player.removeEffect(MobEffects.WATER_BREATHING);
     }

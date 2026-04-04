@@ -1,14 +1,18 @@
 {
-	"required": true,
-	"package": "com.theokapi.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"client": [
-		"InventoryMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "com.theokapi.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "FogRendererMixin",
+    "InventoryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [
+    "PlayerMixin"
+  ]
 }

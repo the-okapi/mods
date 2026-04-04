@@ -160,6 +160,23 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.REDSTONE), has(Items.REDSTONE))
                         .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
                         .save(recipeOutput);
+
+                shapeless(RecipeCategory.FOOD, MoneyItems.CHEESE, 2)
+                        .requires(Items.MILK_BUCKET)
+                        .unlockedBy(getHasName(Items.MILK_BUCKET), has(Items.MILK_BUCKET))
+                        .save(recipeOutput, "make_cheese");
+
+                shaped(RecipeCategory.FOOD, MoneyBlocks.CHEESE_WHEEL)
+                        .pattern("cc")
+                        .pattern("cc")
+                        .define('c', MoneyItems.CHEESE)
+                        .unlockedBy(getHasName(MoneyItems.CHEESE), has(MoneyItems.CHEESE))
+                        .save(recipeOutput);
+
+                shapeless(RecipeCategory.FOOD, MoneyItems.CHEESE, 4)
+                        .requires(MoneyBlocks.CHEESE_WHEEL)
+                        .unlockedBy(getHasName(MoneyBlocks.CHEESE_WHEEL), has(MoneyBlocks.CHEESE_WHEEL))
+                        .save(recipeOutput, "cheese_from_wheel");
             }
         };
     }

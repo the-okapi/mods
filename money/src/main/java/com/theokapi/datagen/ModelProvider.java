@@ -28,5 +28,8 @@ public class ModelProvider extends FabricModelProvider {
         itemModelGenerators.generateFlatItem(MoneyItems.TWENTY_DOLLARS, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(MoneyItems.FIFTY_DOLLARS, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(MoneyItems.ONE_HUNDRED_DOLLARS, ModelTemplates.FLAT_ITEM);
+
+        itemModelGenerators.generateFlatItem(MoneyItems.CHEESE, ModelTemplates.FLAT_ITEM);
+        itemModelGenerators.generateFlatItem(MoneyBlocks.CHEESE_WHEEL.asItem(), ModelTemplates.FLAT_ITEM);
     }
 }

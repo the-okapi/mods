@@ -21,6 +21,9 @@ public class LangProvider extends FabricLanguageProvider {
         translationBuilder.add("item.money.fifty_dollars", "Fifty Dollars");
         translationBuilder.add("item.money.one_hundred_dollars", "One Hundred Dollars");
 
+        translationBuilder.add("item.money.cheese", "Cheese");
+        translationBuilder.add("block.money.cheese_wheel", "Cheese Wheel");
+
         translationBuilder.add("block.money.atm", "ATM");
     }
 }

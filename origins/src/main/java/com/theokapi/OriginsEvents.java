@@ -146,6 +146,29 @@ public class OriginsEvents {
                     ), 1f);
                 }
             }
+            if ("merling".equals(origin)) {
+                Integer airSupply = player.getAttached(Origins.MERLING_AIR_SUPPLY);
+                if (airSupply == null) {
+                    player.setAttached(Origins.MERLING_AIR_SUPPLY, 300);
+                    airSupply = 300;
+                }
+
+                if (player.isInWater()) {
+                    if (airSupply < 300) {
+                        airSupply++;
+                        player.setAttached(Origins.MERLING_AIR_SUPPLY, airSupply);
+                    }
+                } else {
+                    if (airSupply > 0) {
+                        airSupply--;
+                        player.setAttached(Origins.MERLING_AIR_SUPPLY, airSupply);
+                    } else {
+                        player.hurtServer(serverLevel, new DamageSource(
+                                serverLevel.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).get(DamageTypes.DRY_OUT.identifier()).orElseThrow()
+                        ), 1.0f);
+                    }
+                }
+            }
         }
     }
 
@@ -207,7 +230,6 @@ public class OriginsEvents {
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
 
         if (origin != null) {
-            Origins.LOGGER.info("respawn");
             OriginsFunctions.callInitFunction(origin, player);
         }
     }

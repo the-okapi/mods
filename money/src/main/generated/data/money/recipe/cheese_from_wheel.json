@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "money:cheese_wheel"
+  ],
+  "result": {
+    "count": 4,
+    "id": "money:cheese"
+  }
+}

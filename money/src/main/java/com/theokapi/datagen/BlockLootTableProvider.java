@@ -15,5 +15,6 @@ public class BlockLootTableProvider extends FabricBlockLootSubProvider {
     @Override
     public void generate() {
         dropSelf(MoneyBlocks.ATM);
+        dropSelf(MoneyBlocks.CHEESE_WHEEL);
     }
 }

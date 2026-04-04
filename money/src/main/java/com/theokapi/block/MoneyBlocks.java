@@ -40,10 +40,15 @@ public class MoneyBlocks {
                     .requiresCorrectToolForDrops()
     );
 
+    public static final Block CHEESE_WHEEL = register("cheese_wheel", CheeseWheelBlock::new, BlockBehaviour.Properties.of().sound(SoundType.FUNGUS));
+
     public static void init() {
         Money.LOGGER.info("Initializing Items");
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .register((creativeModeTab) -> creativeModeTab.accept(ATM));
+
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((creativeModeTab) -> creativeModeTab.accept(CHEESE_WHEEL));
     }
 }

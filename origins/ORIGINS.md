@@ -1,8 +1,8 @@
 # Origins
 
-### Enderian: **COMPLETED**
+### Enderian: ***COMPLETED***
 
-***Ender Pearl:*** replace active item with ender pearl, use pearl, put origin item back: **COMPLETED**
+***Ender Pearl:*** replace active item with ender pearl, use pearl, put origin item back: ***COMPLETED***
 
 Reach Further?: ***COMPLETED***
 
@@ -14,15 +14,15 @@ Takes Damage when wearing a pumpkin: ***COMPLETED***
 
 Can breath underwater: permanent water breathing ***COMPLETED***
 
-Can see underwater?
+Can see underwater: ***COMPLETED***
 
-Can break block underwater as if not in water?
+Can break block underwater as if not in water: ***COMPLETED***
 
 Has increased swim speed ***COMPLETED***
 
-Does not sink underwater
+Does not sink underwater: ***COMPLETED***
 
-Can only hold their breath a limited time while out of water.
+Can only hold their breath a limited time while out of water: ***COMPLETED***
 
 ### Warden:
 
@@ -101,7 +101,7 @@ Hungers quicker: ***COMPLETED***
 
 No fall damage: ***COMPLETED***
 
-Jump higher while sprinting
+Jump higher while sprinting: ***COMPLETED***
 
 Slightly dark vision
 
@@ -111,13 +111,13 @@ Scares creepers away
 
 Only mines stone when less than 3 natural stone blocks touching
 
-### Breezeborn
+### Breezeborn: ***COMPLETED***
 
 No armor: ***COMPLETED***
 
-Shoots wind charges: **COMPLETED**
+Shoots wind charges: ***COMPLETED***
 
-Jump higher when sprinting
+Jump higher when sprinting: ***COMPLETED***
 
 No fall damage: ***COMPLETED***
 
@@ -125,15 +125,15 @@ Double fire damage: ***COMPLETED***
 
 6 Hearts: ***COMPLETED***
 
-### Iron Golem: **COMPLETED**
+### Golem: ***COMPLETED***
 
-No armor: **COMPLETED**
+No armor: ***COMPLETED***
 
-Permanent Slowness: **COMPLETED**
+Permanent Slowness: ***COMPLETED***
 
-17 Hearts: **COMPLETED**
+17 Hearts: ***COMPLETED***
 
-Permanent hero of the village: **COMPLETED**
+Permanent hero of the village: ***COMPLETED***
 
 ## Config
 

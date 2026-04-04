@@ -46,6 +46,18 @@ public class Origins implements ModInitializer {
 					)
 	);
 
+	public static final AttachmentType<Integer> MERLING_AIR_SUPPLY = AttachmentRegistry.create(
+			Identifier.fromNamespaceAndPath(MOD_ID, "merling_air_supply"),
+			integerBuilder -> integerBuilder
+					.initializer(() -> 300)
+					.persistent(Codec.INT)
+					.copyOnDeath()
+					.syncWith(
+							ByteBufCodecs.INT,
+							AttachmentSyncPredicate.targetOnly()
+					)
+	);
+
 	public static final TagKey<Item> ORBS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "orbs"));
 
 	public static final TagKey<Item> ELYTRIAN_NOT_ALLOWED = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "elytrian_not_allowed"));
