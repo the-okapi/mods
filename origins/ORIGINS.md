@@ -10,7 +10,7 @@ Takes Damage when in contact with water: ***COMPLETED***
 
 Takes Damage when wearing a pumpkin: ***COMPLETED***
 
-### Merling:
+### Merling: ***COMPLETED***
 
 Can breath underwater: permanent water breathing ***COMPLETED***
 
@@ -38,11 +38,11 @@ Sonic Boom Attack
 
 Slowness: ***COMPLETED***
 
-### Elytrian:
+### Elytrian: ***COMPLETED***
 
 Elytra wings by default: ***COMPLETED***
 
-Every 30 seconds, can launch into air.
+Every 30 seconds, can launch into air: **COMPLETED**
 
 Double damage while in elytra flight: ***COMPLETED***
 
@@ -50,7 +50,7 @@ Can only wear light armour ***COMPLETED***
 
 More kinetic damage: ***COMPLETED***
 
-Slowness and Weakness in places with low ceilings
+Slowness and Weakness in places with low ceilings: ***COMPLETED***
 
 
 ### Blazeborn: ***COMPLETED***

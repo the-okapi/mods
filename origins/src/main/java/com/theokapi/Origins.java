@@ -3,6 +3,8 @@ package com.theokapi;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.serialization.Codec;
 import com.theokapi.item.OriginsItems;
+import com.theokapi.networking.ServerboundPearlPayload;
+import com.theokapi.networking.ServerboundWindChargePayload;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
@@ -22,6 +24,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -88,6 +91,7 @@ public class Origins implements ModInitializer {
 
 		CommandRegistrationCallback.EVENT.register(((dispatcher, _, _) -> {
 			dispatcher.register(Commands.literal("get_origin")
+					.requires((source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR)))
 					.then(Commands.argument("player", EntityArgument.player())
 							.executes(OriginsCommands::originCommand))
 			);
@@ -95,6 +99,12 @@ public class Origins implements ModInitializer {
 			dispatcher.register(Commands.literal("origin")
 					.then(Commands.argument("origin", StringArgumentType.string())
 							.executes(OriginsCommands::setOriginCommand)));
+
+			dispatcher.register(Commands.literal("set_origin")
+					.then(Commands.argument("player", EntityArgument.player())
+							.requires((source -> source.permissions().hasPermission(Permissions.COMMANDS_MODERATOR)))
+							.then(Commands.argument("origin", StringArgumentType.string())
+							.executes(OriginsCommands::otherSetOriginCommand))));
 		}));
 
 		OriginsItems.init();

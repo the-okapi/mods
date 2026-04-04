@@ -2,6 +2,8 @@ package com.theokapi;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.theokapi.item.OriginsItems;
+import com.theokapi.networking.ServerboundPearlPayload;
+import com.theokapi.networking.ServerboundWindChargePayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -83,6 +85,16 @@ public class OriginsAbilities {
                 if ("breezeborn".equals(origin)) {
                     ServerboundWindChargePayload payload = new ServerboundWindChargePayload(player.getPlainTextName());
                     ClientPlayNetworking.send(payload);
+                }
+
+                if ("elytrian".equals(origin) && player.onGround()) {
+                    ItemCooldowns cooldowns = player.getCooldowns();
+                    float windChargeCooldown = cooldowns.getCooldownPercent(OriginsItems.ROCKET_ITEM.getDefaultInstance(), 1);
+                    if (windChargeCooldown > 0.0f) {
+                        return;
+                    }
+                    player.setDeltaMovement(0.0, 2.0, 0.0);
+                    cooldowns.addCooldown(OriginsItems.ROCKET_ITEM.getDefaultInstance(), 30 * 20);
                 }
             }
         });

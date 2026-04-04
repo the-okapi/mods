@@ -169,6 +169,21 @@ public class OriginsEvents {
                     }
                 }
             }
+            if ("elytrian".equals(origin)) {
+                BlockPos blockPos = player.blockPosition();
+                ServerLevel level = player.level();
+                List<BlockState> blocks = List.of(
+                        level.getBlockState(blockPos.offset(0, 1, 0)),
+                        level.getBlockState(blockPos.offset(0, 2, 0)),
+                        level.getBlockState(blockPos.offset(0, 3, 0))
+                );
+                for (BlockState blockState : blocks) {
+                    if (blockState != Blocks.AIR.defaultBlockState() && !blockState.is(BlockTags.REPLACEABLE)) {
+                        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 15 * 20));
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 15 * 20));
+                    }
+                }
+            }
         }
     }
 

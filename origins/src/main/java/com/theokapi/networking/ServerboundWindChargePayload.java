@@ -1,5 +1,6 @@
-package com.theokapi;
+package com.theokapi.networking;
 
+import com.theokapi.Origins;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

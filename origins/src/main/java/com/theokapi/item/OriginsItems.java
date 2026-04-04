@@ -71,4 +71,6 @@ public class OriginsItems {
     public static final Item PEARL_ITEM = register("pearl", Item::new, new Item.Properties());
 
     public static final Item WIND_CHARGE_ITEM = register("wind_charge", Item::new, new Item.Properties());
+
+    public static final Item ROCKET_ITEM = register("rocket", Item::new, new Item.Properties());
 }

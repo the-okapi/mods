@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -154,6 +155,9 @@ public class OriginsFunctions {
     }
 
     private static void elytrianInit(Player player) {
+        if (!(player instanceof ServerPlayer)) {
+            return;
+        }
         Inventory inventory = player.getInventory();
         for (int i = 36; i < 40; i++) {
             ItemStack item = inventory.getItem(i);
@@ -163,23 +167,27 @@ public class OriginsFunctions {
         }
         ItemStack item = inventory.getItem(38);
         if (item != ItemStack.EMPTY) {
+            Origins.LOGGER.info(item.toString());
             Origins.giveItem(player, item);
         }
-        ItemStack elytraItem = new ItemStack(Items.ELYTRA);
+        ItemStack elytraItem = Items.ELYTRA.getDefaultInstance();
         Registry<Enchantment> registry = player.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
-        Enchantment curseOfBinding = registry.get(Enchantments.BINDING_CURSE.identifier()).orElseThrow().value();
-        Enchantment curseOfVanishing = registry.get(Enchantments.VANISHING_CURSE.identifier()).orElseThrow().value();
-        elytraItem.enchant(Holder.direct(curseOfBinding), 1);
-        elytraItem.enchant(Holder.direct(curseOfVanishing), 1);
+        Holder<Enchantment> curseOfBinding = registry.get(Enchantments.BINDING_CURSE.identifier()).orElseThrow();
+        Holder<Enchantment> curseOfVanishing = registry.get(Enchantments.VANISHING_CURSE.identifier()).orElseThrow();
+        elytraItem.enchant(curseOfBinding, 1);
+        elytraItem.enchant(curseOfVanishing, 1);
         elytraItem.applyComponents(DataComponentMap.builder()
                 .set(DataComponents.UNBREAKABLE, Unit.INSTANCE)
                 .set(DataComponents.ITEM_NAME, Component.literal("Elytrian Wings"))
                 .build());
         inventory.setItem(38, elytraItem);
+        Origins.LOGGER.info(elytraItem.toString());
     }
 
     private static void elytrianCleanup(Player player) {
         player.getInventory().setItem(38, ItemStack.EMPTY);
+        player.removeEffect(MobEffects.SLOWNESS);
+        player.removeEffect(MobEffects.WEAKNESS);
     }
 
     private static void avianInit(Player player) {
