@@ -81,6 +81,9 @@ public class OriginsClient implements ClientModInitializer {
 
         graphics.item(new ItemStack(item, 1), 4, 4);
 
+        int scaledHeight = minecraft.getWindow().getGuiScaledHeight();
+        int scaledWidth = minecraft.getWindow().getGuiScaledWidth();
+
         if ("merling".equals(origin)) {
             if (player.gameMode() != GameType.SURVIVAL) {
                 return;
@@ -97,8 +100,6 @@ public class OriginsClient implements ClientModInitializer {
                 airBubbles = 10;
             }
 
-            int scaledHeight = minecraft.getWindow().getGuiScaledHeight();
-            int scaledWidth = minecraft.getWindow().getGuiScaledWidth();
             int x = scaledWidth / 2 + 82;
             int y = scaledHeight - 49;
             Identifier airTexture = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/hud/air.png");
@@ -118,6 +119,8 @@ public class OriginsClient implements ClientModInitializer {
         } else if ("elytrian".equals(origin) && cooldown != 0.0f) {
             graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF353535);
             graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFF8F8FB3);
+        } else if ("feline".equals(origin)) {
+            graphics.fill(0, 0, scaledWidth, scaledHeight, 0x44000000);
         }
     }
 }

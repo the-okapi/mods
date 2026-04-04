@@ -46,6 +46,6 @@ public class Graves implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Initializing mod");
 
-		ServerLivingEntityEvents.ALLOW_DEATH.register(GraveSpawn::allowDeath);
+		ServerLivingEntityEvents.ALLOW_DEATH.register(((entity, _, _) -> GraveSpawn.allowDeath(entity)));
 	}
 }

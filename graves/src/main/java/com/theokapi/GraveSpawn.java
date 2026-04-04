@@ -1,12 +1,9 @@
 package com.theokapi;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jspecify.annotations.Nullable;
@@ -50,7 +47,7 @@ public class GraveSpawn {
         return null;
     }
 
-    public static boolean allowDeath(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
+    public static boolean allowDeath(LivingEntity livingEntity) {
         if (!(livingEntity instanceof ServerPlayer player)) {
             return true;
         }

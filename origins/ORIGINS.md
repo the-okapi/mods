@@ -42,7 +42,7 @@ Slowness: ***COMPLETED***
 
 Elytra wings by default: ***COMPLETED***
 
-Every 30 seconds, can launch into air: **COMPLETED**
+Every 30 seconds, can launch into air: ***COMPLETED***
 
 Double damage while in elytra flight: ***COMPLETED***
 
@@ -103,13 +103,11 @@ No fall damage: ***COMPLETED***
 
 Jump higher while sprinting: ***COMPLETED***
 
-Slightly dark vision
-
-Scares creepers away
+Slightly dark vision: ***COMPLETED***
 
 9 Hearts: ***COMPLETED***
 
-Only mines stone when less than 3 natural stone blocks touching
+Only mines stone when less than 3 natural stone blocks touching: ***COMPLETED***
 
 ### Breezeborn: ***COMPLETED***
 

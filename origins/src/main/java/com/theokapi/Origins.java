@@ -29,6 +29,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,6 +70,8 @@ public class Origins implements ModInitializer {
 
 	public static final TagKey<Item> PUMPKIN = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, "pumpkin"));
 
+	public static final TagKey<Block> ORES = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, "ores"));
+
 	public static <T extends Player> void giveItem(T player, ItemStack item) {
 		boolean addedItem = player.addItem(item);
 		if (!addedItem) {
@@ -88,6 +91,7 @@ public class Origins implements ModInitializer {
 		UseBlockCallback.EVENT.register(((player, level, _, blockHitResult) -> OriginsEvents.useBlock(player, level, blockHitResult)));
 		ServerPlayerEvents.AFTER_RESPAWN.register(((_, newPlayer, _) -> OriginsEvents.afterRespawn(newPlayer)));
 		PlayerBlockBreakEvents.AFTER.register(((_, player, _, state, _) -> OriginsEvents.afterBlockBreak(player, state)));
+		PlayerBlockBreakEvents.BEFORE.register((((level, player, pos, state, _) -> OriginsEvents.beforeBlockBreak(level, player, pos, state))));
 
 		CommandRegistrationCallback.EVENT.register(((dispatcher, _, _) -> {
 			dispatcher.register(Commands.literal("get_origin")

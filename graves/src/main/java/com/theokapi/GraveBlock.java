@@ -2,12 +2,15 @@ package com.theokapi;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -73,7 +76,12 @@ public class GraveBlock extends BaseEntityBlock {
 
         Inventory inventory = player.getInventory();
 
+        Holder<Enchantment> vanishingCurse = level.registryAccess().getOrThrow(Enchantments.VANISHING_CURSE);
+
         for (ItemStack item : items) {
+            if (item.getEnchantments().getLevel(vanishingCurse) > 0) {
+                continue;
+            }
             if (getSlotsLeft(inventory) > 0) {
                 player.addItem(item);
             } else {

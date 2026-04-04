@@ -268,4 +268,26 @@ public class OriginsEvents {
             Origins.giveItem(player, item);
         }
     }
+
+    public static boolean beforeBlockBreak(Level level, Player player, BlockPos blockPos, BlockState blockState) {
+        String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
+        if (!"feline".equals(origin) || !blockState.is(BlockTags.BASE_STONE_OVERWORLD)) {
+            return true;
+        }
+        List<BlockState> blockStates = List.of(
+                level.getBlockState(blockPos.offset(1, 0, 0)),
+                level.getBlockState(blockPos.offset(-1, 0, 0)),
+                level.getBlockState(blockPos.offset(0, 1, 0)),
+                level.getBlockState(blockPos.offset(0, -1, 0)),
+                level.getBlockState(blockPos.offset(0, 0, 1)),
+                level.getBlockState(blockPos.offset(0, 0, -1))
+        );
+        int naturalStoneBlocks = 0;
+        for (BlockState state : blockStates) {
+            if (state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(Origins.ORES)) {
+                naturalStoneBlocks++;
+            }
+        }
+        return naturalStoneBlocks <= 3;
+    }
 }
