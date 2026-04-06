@@ -24,25 +24,12 @@ public class OriginsItems {
     }
 
     public static final Item BLAZEBORN_ORB = registerOrb("blazeborn");
-
     public static final Item AVIAN_ORB = registerOrb("avian");
-
     public static final Item ENDERIAN_ORB = registerOrb("enderian");
-
     public static final Item MERLING_ORB = registerOrb("merling");
-
-    public static final Item WARDEN_ORB = registerOrb("warden");
-
     public static final Item ELYTRIAN_ORB = registerOrb("elytrian");
-
-    public static final Item ARACHNID_ORB = registerOrb("arachnid");
-
-    public static final Item SHULK_ORB = registerOrb("shulk");
-
     public static final Item FELINE_ORB = registerOrb("feline");
-
     public static final Item BREEZEBORN_ORB = registerOrb("breezeborn");
-
     public static final Item GOLEM_ORB = registerOrb("golem");
 
     public static final Item REVERSE_ORB =
@@ -53,7 +40,6 @@ public class OriginsItems {
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
                 .register(creativeModeTab -> {
-                    creativeModeTab.accept(ARACHNID_ORB);
                     creativeModeTab.accept(AVIAN_ORB);
                     creativeModeTab.accept(BLAZEBORN_ORB);
                     creativeModeTab.accept(BREEZEBORN_ORB);
@@ -62,8 +48,6 @@ public class OriginsItems {
                     creativeModeTab.accept(FELINE_ORB);
                     creativeModeTab.accept(GOLEM_ORB);
                     creativeModeTab.accept(MERLING_ORB);
-                    creativeModeTab.accept(SHULK_ORB);
-                    creativeModeTab.accept(WARDEN_ORB);
                     creativeModeTab.accept(REVERSE_ORB);
                 });
     }

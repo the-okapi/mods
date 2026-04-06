@@ -106,26 +106,6 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .group("merling_orb")
                         .save(recipeOutput, "merling_orb_converting");
 
-                shaped(RecipeCategory.MISC, OriginsItems.WARDEN_ORB)
-                        .pattern("ebe")
-                        .pattern("bgb")
-                        .pattern("ebe")
-                        .define('e', Items.ENDER_EYE)
-                        .define('g', Items.ENCHANTED_GOLDEN_APPLE)
-                        .define('b', Items.SCULK)
-                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
-                        .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
-                        .unlockedBy(getHasName(Items.SCULK), has(Items.SCULK))
-                        .group("warden_orb")
-                        .save(recipeOutput, "warden_orb_crafting");
-
-                shapeless(RecipeCategory.MISC, OriginsItems.WARDEN_ORB)
-                        .requires(Origins.ORBS)
-                        .requires(Items.SCULK, 4)
-                        .unlockedBy(getHasName(Items.SCULK), has(Items.SCULK))
-                        .group("warden_orb")
-                        .save(recipeOutput, "warden_orb_converting");
-
                 shaped(RecipeCategory.MISC, OriginsItems.ELYTRIAN_ORB)
                         .pattern("ebe")
                         .pattern("bgb")
@@ -146,26 +126,6 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .group("elytrian_orb")
                         .save(recipeOutput, "elytrian_orb_converting");
 
-                shaped(RecipeCategory.MISC, OriginsItems.ARACHNID_ORB)
-                        .pattern("ebe")
-                        .pattern("bgb")
-                        .pattern("ebe")
-                        .define('e', Items.ENDER_EYE)
-                        .define('g', Items.ENCHANTED_GOLDEN_APPLE)
-                        .define('b', Items.SPIDER_EYE)
-                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
-                        .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
-                        .unlockedBy(getHasName(Items.SPIDER_EYE), has(Items.SPIDER_EYE))
-                        .group("arachnid_orb")
-                        .save(recipeOutput, "arachnid_orb_crafting");
-
-                shapeless(RecipeCategory.MISC, OriginsItems.ARACHNID_ORB)
-                        .requires(Origins.ORBS)
-                        .requires(Items.SPIDER_EYE, 4)
-                        .unlockedBy(getHasName(Items.SPIDER_EYE), has(Items.SPIDER_EYE))
-                        .group("arachnid_orb")
-                        .save(recipeOutput, "arachnid_orb_converting");
-
                 shaped(RecipeCategory.MISC, OriginsItems.FELINE_ORB)
                         .pattern("ebe")
                         .pattern("bgb")
@@ -185,26 +145,6 @@ public class RecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.STRING), has(Items.STRING))
                         .group("feline_orb")
                         .save(recipeOutput, "feline_orb_converting");
-
-                shaped(RecipeCategory.MISC, OriginsItems.SHULK_ORB)
-                        .pattern("ebe")
-                        .pattern("bgb")
-                        .pattern("ebe")
-                        .define('e', Items.ENDER_EYE)
-                        .define('g', Items.ENCHANTED_GOLDEN_APPLE)
-                        .define('b', Items.SHULKER_SHELL)
-                        .unlockedBy(getHasName(Items.ENDER_EYE), has(Items.ENDER_EYE))
-                        .unlockedBy(getHasName(Items.ENCHANTED_GOLDEN_APPLE), has(Items.ENCHANTED_GOLDEN_APPLE))
-                        .unlockedBy(getHasName(Items.SHULKER_SHELL), has(Items.SHULKER_SHELL))
-                        .group("shulk_orb")
-                        .save(recipeOutput, "shulk_orb_crafting");
-
-                shapeless(RecipeCategory.MISC, OriginsItems.SHULK_ORB)
-                        .requires(Origins.ORBS)
-                        .requires(Items.SHULKER_SHELL, 4)
-                        .unlockedBy(getHasName(Items.SHULKER_SHELL), has(Items.SHULKER_SHELL))
-                        .group("shulk_orb")
-                        .save(recipeOutput, "shulk_orb_converting");
 
                 shaped(RecipeCategory.MISC, OriginsItems.BREEZEBORN_ORB)
                         .pattern("ebe")

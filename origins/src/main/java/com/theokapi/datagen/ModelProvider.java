@@ -24,11 +24,8 @@ public class ModelProvider extends FabricModelProvider {
         itemModelGenerators.generateFlatItem(OriginsItems.AVIAN_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.ENDERIAN_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.MERLING_ORB, ModelTemplates.FLAT_ITEM);
-        itemModelGenerators.generateFlatItem(OriginsItems.WARDEN_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.ELYTRIAN_ORB, ModelTemplates.FLAT_ITEM);
-        itemModelGenerators.generateFlatItem(OriginsItems.ARACHNID_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.FELINE_ORB, ModelTemplates.FLAT_ITEM);
-        itemModelGenerators.generateFlatItem(OriginsItems.SHULK_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.REVERSE_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.BREEZEBORN_ORB, ModelTemplates.FLAT_ITEM);
         itemModelGenerators.generateFlatItem(OriginsItems.GOLEM_ORB, ModelTemplates.FLAT_ITEM);
