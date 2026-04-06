@@ -277,8 +277,9 @@ public class OriginsFunctions {
         }
         attributeInstance.setBaseValue(1);
 
-        player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, -1, 2, true, false, false));
         player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, -1, 0, true, false, false));
+        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, -1, 0, true, false, false));
     }
 
     private static void merlingCleanup(Player player) {
@@ -288,8 +289,11 @@ public class OriginsFunctions {
         }
         attributeInstance.setBaseValue(0.2);
 
+        player.removeAttached(Origins.MERLING_AIR_SUPPLY);
+
         player.removeEffect(MobEffects.DOLPHINS_GRACE);
         player.removeEffect(MobEffects.WATER_BREATHING);
+        player.removeEffect(MobEffects.NIGHT_VISION);
     }
 
     private static void removeShieldInit(Player player) {

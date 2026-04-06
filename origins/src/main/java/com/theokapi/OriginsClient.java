@@ -89,26 +89,50 @@ public class OriginsClient implements ClientModInitializer {
                 return;
             }
             Integer airSupply = player.getAttached(Origins.MERLING_AIR_SUPPLY);
-            if (airSupply == null) {
+            if (airSupply == null || airSupply == 300) {
                 return;
             }
 
-            int airBubbles = (airSupply + (30 - (airSupply % 30))) / 30;
-            if (airSupply == 0) {
-                airBubbles = 0;
-            } else if (airSupply == 300) {
-                airBubbles = 10;
-            }
-
-            int x = scaledWidth / 2 + 82;
-            int y = scaledHeight - 49;
-            Identifier airTexture = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/hud/air.png");
-            Identifier emptyBubbleTexture = Identifier.fromNamespaceAndPath("minecraft", "textures/gui/sprites/hud/air_empty.png");
-            for (int i = 0; i < airBubbles; i++) {
-                graphics.blit(RenderPipelines.GUI_TEXTURED, airTexture, x - (8 * i), y, 0, 0, 9, 9, 9, 9);
-            }
-            for (int i = airBubbles; i < 10; i++) {
-                graphics.blit(RenderPipelines.GUI_TEXTURED, emptyBubbleTexture, x - (8 * i), y, 0, 0, 9, 9, 9, 9);
+            if (airSupply > 271) {
+                renderBubbles(10, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 270) {
+                renderBubbles(9, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 241) {
+                renderBubbles(9, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 240) {
+                renderBubbles(8, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 211) {
+                renderBubbles(8, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 210) {
+                renderBubbles(7, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 181) {
+                renderBubbles(7, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 180) {
+                renderBubbles(6, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 151) {
+                renderBubbles(6, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 150) {
+                renderBubbles(5, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 121) {
+                renderBubbles(5, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 120) {
+                renderBubbles(4, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 91) {
+                renderBubbles(4, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 90) {
+                renderBubbles(3, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 61) {
+                renderBubbles(3, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 60) {
+                renderBubbles(2, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 31) {
+                renderBubbles(2, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply >= 30) {
+                renderBubbles(1, true, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 1) {
+                renderBubbles(1, false, graphics, scaledWidth, scaledHeight);
+            } else if (airSupply > 0) {
+                renderBubbles(0, true, graphics, scaledWidth, scaledHeight);
             }
         } else if ("enderian".equals(origin) && cooldown != 0.0f) {
             Identifier enderianBackground = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/enderian_cooldown_background.png");
@@ -130,6 +154,25 @@ public class OriginsClient implements ClientModInitializer {
             graphics.blit(RenderPipelines.GUI_TEXTURED, elytrianProgress, 24, 10, 0, 0, progress, 5, 200, 5);
         } else if ("feline".equals(origin)) {
             graphics.fill(0, 0, scaledWidth, scaledHeight, 0x44000000);
+        }
+    }
+
+    private static void renderBubbles(int bubbles, boolean poppedBubble, GuiGraphicsExtractor graphics, int scaledWidth, int scaledHeight) {
+        int x = scaledWidth / 2 + 82;
+        int y = scaledHeight - 49;
+        Identifier airTexture = Identifier.withDefaultNamespace("textures/gui/sprites/hud/air.png");
+        Identifier poppedBubbleTexture = Identifier.withDefaultNamespace("textures/gui/sprites/hud/air_bursting.png");
+        Identifier emptyBubbleTexture = Identifier.withDefaultNamespace("textures/gui/sprites/hud/air_empty.png");
+        for (int i = 0; i < bubbles; i++) {
+            graphics.blit(RenderPipelines.GUI_TEXTURED, airTexture, x - (8 * i), y, 0, 0, 9, 9, 9, 9);
+        }
+        int bubble = bubbles;
+        if (poppedBubble) {
+            bubble++;
+            graphics.blit(RenderPipelines.GUI_TEXTURED, poppedBubbleTexture, x - (8 * bubbles), y, 0, 0, 9, 9, 9, 9);
+        }
+        for (int i = bubble; i < 10; i++) {
+            graphics.blit(RenderPipelines.GUI_TEXTURED, emptyBubbleTexture, x - (8 * i), y, 0, 0, 9, 9, 9, 9);
         }
     }
 }

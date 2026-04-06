@@ -1,5 +1,4 @@
 {
-  "item.origins.arachnid_orb": "Arachnid Orb",
   "item.origins.avian_orb": "Avian Orb",
   "item.origins.blazeborn_orb": "Blazeborn Orb",
   "item.origins.breezeborn_orb": "Breezeborn Orb",
@@ -9,8 +8,6 @@
   "item.origins.golem_orb": "Golem Orb",
   "item.origins.merling_orb": "Merling Orb",
   "item.origins.reverse_orb": "Reverse Orb",
-  "item.origins.shulk_orb": "Shulk Orb",
-  "item.origins.warden_orb": "Warden Orb",
   "key.category.origins.origins_category": "Origins",
   "key.origins.origin_ability": "Origin Ability",
   "tag.item.origins.elytrian_not_allowed": "Elytrian Not Allowed",

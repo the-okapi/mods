@@ -155,7 +155,12 @@ public class OriginsEvents {
 
                 if (player.isInWater()) {
                     if (airSupply < 300) {
-                        airSupply++;
+                        List<Integer> transitions = List.of(0, 29, 59, 89, 119, 149, 179, 209, 239, 269);
+                        if (transitions.contains(airSupply)) {
+                            airSupply += 3;
+                        } else {
+                            airSupply++;
+                        }
                         player.setAttached(Origins.MERLING_AIR_SUPPLY, airSupply);
                     }
                 } else {
