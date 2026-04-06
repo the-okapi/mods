@@ -2,5 +2,5 @@
 
 - **Graves** *(complete)*
 - **Money** *(complete)*
-- Origins
-- Trading
+- **Origins** *(completed)*
+- Okapi

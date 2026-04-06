@@ -40,7 +40,6 @@ More kinetic damage: ***COMPLETED***
 
 Slowness and Weakness in places with low ceilings: ***COMPLETED***
 
-
 ### Blazeborn: ***COMPLETED***
 
 Immune to fire and lava  damage: ***COMPLETED***

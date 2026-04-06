@@ -7,6 +7,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -27,6 +28,8 @@ public class MoneyItems {
     public static final Item TWENTY_DOLLARS = register("twenty_dollars", Item::new, new Item.Properties());
     public static final Item FIFTY_DOLLARS = register("fifty_dollars", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
     public static final Item ONE_HUNDRED_DOLLARS = register("one_hundred_dollars", Item::new, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final TagKey<Item> MONEY = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Money.MOD_ID, "money"));
 
     public static final FoodProperties CHEESE_FOOD_PROPERTIES = new FoodProperties.Builder().nutrition(5).saturationModifier(6).build();
     public static final Item CHEESE = register("cheese", Item::new, new Item.Properties().food(CHEESE_FOOD_PROPERTIES));

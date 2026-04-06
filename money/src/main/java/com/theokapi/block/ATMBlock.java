@@ -19,12 +19,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ATMBlock extends Block {
     public ATMBlock(Properties properties) {
         super(properties);
     }
+
+    private record ReturnItems(int items, int dollars) {}
 
     private List<ItemStack> getItemsToGive(int dollars) {
         int one_hundred = 0;
@@ -90,13 +93,73 @@ public class ATMBlock extends Block {
         for (ItemStack item : items) {
             int slotsLeft = getEmptySlots(player.getInventory().getNonEquipmentItems());
             if (slotsLeft > 0) {
-                Money.LOGGER.info("1");
                 player.addItem(item);
             } else {
-                Money.LOGGER.info("0");
                 player.drop(item, false);
             }
         }
+    }
+
+    private ReturnItems getValueOfMoney(ItemStack money, int dollars, int exchange) {
+        if (!money.is(MoneyItems.MONEY)) {
+            return new ReturnItems(-1, -1);
+        }
+
+        int moneyCount = getCount(money);
+
+        if (moneyCount < dollars) {
+           return new ReturnItems(-1, -1);
+       }
+
+       if (dollars == 1) {
+           return new ReturnItems(moneyCount * exchange, 0);
+       }
+
+       int extra = moneyCount % dollars;
+
+       return new ReturnItems(((moneyCount - extra) / dollars) * exchange, extra);
+    }
+
+    private static int getCount(ItemStack money) {
+        int moneyCount;
+
+        Item item = money.getItem();
+        if (item == MoneyItems.FIVE_DOLLARS) {
+            moneyCount = 5 * money.getCount();
+        } else if (item == MoneyItems.TEN_DOLLARS) {
+            moneyCount = 10 * money.getCount();
+        } else if (item == MoneyItems.TWENTY_DOLLARS) {
+            moneyCount = 20 * money.getCount();
+        } else if (item == MoneyItems.FIFTY_DOLLARS) {
+            moneyCount = 50 * money.getCount();
+        } else if (item == MoneyItems.ONE_HUNDRED_DOLLARS) {
+            moneyCount = 100 * money.getCount();
+        } else {
+            moneyCount = money.getCount();
+        }
+        return moneyCount;
+    }
+
+    private List<ItemStack> getItemsToGive(int itemCount, Item item, int extraDollars) {
+        List<ItemStack> items = new ArrayList<>();
+
+        if (itemCount <= 64) {
+            items.add(new ItemStack(item, itemCount));
+        } else {
+            int itemsLeft = itemCount;
+            while (itemsLeft > 64) {
+                items.add(new ItemStack(item, 64));
+                itemsLeft -= 64;
+            }
+
+            if (itemsLeft > 0) {
+                items.add(new ItemStack(item, itemsLeft));
+            }
+        }
+
+        items.addAll(getItemsToGive(extraDollars));
+
+        return items;
     }
 
     @Override
@@ -122,7 +185,16 @@ public class ATMBlock extends Block {
 
         player.playSound(SoundEvents.ITEM_PICKUP);
 
-        if (moneySavedData.getItem() != activeItem.getItem() || activeItem.getCount() < count) {
+        if (activeItem.is(MoneyItems.MONEY)) {
+            ReturnItems returnItems = getValueOfMoney(activeItem, dollars, count);
+            if (returnItems.items != -1) {
+                activeItem.setCount(0);
+                givePlayer(player, getItemsToGive(returnItems.items, item, returnItems.dollars));
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        if (item != activeItem.getItem() || activeItem.getCount() < count) {
             player.sendOverlayMessage(Component.literal("Exchange rate is " + count + " " + new ItemStack(item, 1).getItemName().getString() + (count > 1 ? "s " : " ") + "for $" + dollars));
             return InteractionResult.SUCCESS;
         }

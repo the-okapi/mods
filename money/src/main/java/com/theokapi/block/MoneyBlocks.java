@@ -43,7 +43,7 @@ public class MoneyBlocks {
     public static final Block CHEESE_WHEEL = register("cheese_wheel", CheeseWheelBlock::new, BlockBehaviour.Properties.of().sound(SoundType.FUNGUS));
 
     public static void init() {
-        Money.LOGGER.info("Initializing Items");
+        Money.LOGGER.info("Initializing Blocks");
 
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 .register((creativeModeTab) -> creativeModeTab.accept(ATM));

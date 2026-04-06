@@ -1,0 +1,11 @@
+{
+  "replace": true,
+  "values": [
+    "money:one_dollar",
+    "money:five_dollars",
+    "money:ten_dollars",
+    "money:twenty_dollars",
+    "money:fifty_dollars",
+    "money:one_hundred_dollars"
+  ]
+}
