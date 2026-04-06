@@ -24,18 +24,6 @@ Does not sink underwater: ***COMPLETED***
 
 Can only hold their breath a limited time while out of water: ***COMPLETED***
 
-### Warden:
-
-Permanent Strength 2: ***COMPLETED***
-
-Permanent Resistance: ***COMPLETED***
-
-20 Hearts: ***COMPLETED***
-
-Permanent Blindness: ***COMPLETED***
-
-Sonic Boom Attack
-
 Slowness: ***COMPLETED***
 
 ### Elytrian: ***COMPLETED***
@@ -75,29 +63,7 @@ Needs to sleet at high altitudes: ***COMPLETED***
 
 Can’t eat meat: on use item, check if item is meat, if yes, fail: ***COMPLETED***
 
-### Arachnid:
-
-Can climb walls
-
-Cobweb spawned on attacker when attacked: ***COMPLETED***
-
-7 Hearts: ***COMPLETED***
-
-Can only eat meat: ***COMPLETED***
-
-### Shulk:
-
-9 additional inventory slots that don’t drop on death
-
-Resistance: ***COMPLETED***
-
-Can break stone blocks without pickaxe: ***COMPLETED***
-
-Cannot use shields: ***COMPLETED***
-
-Hungers quicker: ***COMPLETED***
-
-### Feline:
+### Feline: ***COMPLETED***
 
 No fall damage: ***COMPLETED***
 

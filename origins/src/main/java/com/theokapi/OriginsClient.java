@@ -111,14 +111,23 @@ public class OriginsClient implements ClientModInitializer {
                 graphics.blit(RenderPipelines.GUI_TEXTURED, emptyBubbleTexture, x - (8 * i), y, 0, 0, 9, 9, 9, 9);
             }
         } else if ("enderian".equals(origin) && cooldown != 0.0f) {
-            graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF032620);
-            graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFF105E51);
+            Identifier enderianBackground = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/enderian_cooldown_background.png");
+            Identifier enderianProgress = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/enderian_cooldown_progress.png");
+            int progress = (int) (cooldown * 40)+1;
+            graphics.blit(RenderPipelines.GUI_TEXTURED, enderianBackground, 24, 10, 0, 0, 40, 5, 40, 5);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, enderianProgress, 24, 10, 0, 0, progress, 5, 182, 5);
         } else if ("breezeborn".equals(origin) && cooldown != 0.0f) {
-            graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF576C9D);
-            graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFFBFAFC9);
+            Identifier breezebornBackground = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/breezeborn_cooldown_background.png");
+            Identifier breezebornProgress = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/breezeborn_cooldown_progress.png");
+            int progress = (int) (cooldown * 20)+1;
+            graphics.blit(RenderPipelines.GUI_TEXTURED, breezebornBackground, 24, 10, 0, 0, 20, 5, 20, 5);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, breezebornProgress, 24, 10, 0, 0, progress, 5, 182, 5);
         } else if ("elytrian".equals(origin) && cooldown != 0.0f) {
-            graphics.fill(23, 9, ((int) (24 + cooldown * 100))+1, 15, 0xFF353535);
-            graphics.fill(24, 10, (int) (24 + cooldown * 100), 14, 0xFF8F8FB3);
+            Identifier elytrianBackground = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/elytrian_cooldown_background.png");
+            Identifier elytrianProgress = Identifier.fromNamespaceAndPath(Origins.MOD_ID, "textures/gui/elytrian_cooldown_progress.png");
+            int progress = (int) (cooldown * 200);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, elytrianBackground, 24, 10, 0, 0, 200, 5, 200, 5);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, elytrianProgress, 24, 10, 0, 0, progress, 5, 200, 5);
         } else if ("feline".equals(origin)) {
             graphics.fill(0, 0, scaledWidth, scaledHeight, 0x44000000);
         }
