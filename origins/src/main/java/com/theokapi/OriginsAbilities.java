@@ -33,16 +33,12 @@ import java.util.Collection;
 public class OriginsAbilities {
     private record PlayerCooldowns(ServerPlayer player, ItemCooldowns itemCooldowns) {}
 
-    private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(
-            Identifier.fromNamespaceAndPath(Origins.MOD_ID, "origins_category")
-    );
-
     private static final KeyMapping ORIGIN_ABILITY_KEY_MAPPING = KeyMappingHelper.registerKeyMapping(
             new KeyMapping(
                     "key.origins.origin_ability",
                     InputConstants.Type.KEYSYM,
                     GLFW.GLFW_KEY_C,
-                    CATEGORY
+                    Origins.CATEGORY
             )
     );
 

@@ -1,5 +1,6 @@
 package com.theokapi;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.serialization.Codec;
 import com.theokapi.item.OriginsItems;
@@ -10,6 +11,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -19,9 +22,11 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.permissions.Permissions;
@@ -30,6 +35,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,10 +85,31 @@ public class Origins implements ModInitializer {
 		}
 	}
 
+	public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(
+			Identifier.fromNamespaceAndPath(Origins.MOD_ID, "origins_category")
+	);
+
+	private static final KeyMapping ORIGIN_SCREEN_KEY_MAPPING = KeyMappingHelper.registerKeyMapping(
+			new KeyMapping(
+					"key.origins.origin_screen",
+					InputConstants.Type.KEYSYM,
+					GLFW.GLFW_KEY_V,
+					CATEGORY
+			)
+	);
+
 	@Override
 	public void onInitialize() {
 		PayloadTypeRegistry.serverboundPlay().register(ServerboundPearlPayload.TYPE, ServerboundPearlPayload.CODEC);
 		PayloadTypeRegistry.serverboundPlay().register(ServerboundWindChargePayload.TYPE, ServerboundWindChargePayload.CODEC);
+
+		ClientTickEvents.END_CLIENT_TICK.register((minecraft) -> {
+			while (ORIGIN_SCREEN_KEY_MAPPING.consumeClick()) {
+				minecraft.setScreen(
+						new OriginsScreen(Component.empty())
+				);
+			}
+		});
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((OriginsEvents::allowDamage));
 		ServerTickEvents.START_LEVEL_TICK.register(OriginsEvents::levelTickStart);
