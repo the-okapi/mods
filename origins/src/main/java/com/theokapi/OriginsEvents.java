@@ -27,8 +27,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Collection;
@@ -100,11 +98,9 @@ public class OriginsEvents {
         List<ServerPlayer> players = serverLevel.players();
 
         for (ServerPlayer player : players) {
-            BlockState block = serverLevel.getBlockState(player.blockPosition());
-            Fluid fluid = block.getFluidState().getType();
             String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
             if ("blazeborn".equals(origin) || "enderian".equals(origin)) {
-                if (fluid == Fluids.FLOWING_WATER || fluid == Fluids.WATER) {
+                if (player.isInWater()) {
                     player.hurtServer(serverLevel, new DamageSource(
                             serverLevel.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).get(DamageTypes.DROWN.identifier()).orElseThrow()
                     ), 1f);
@@ -112,8 +108,10 @@ public class OriginsEvents {
                     BlockPos blockPos = player.blockPosition();
                     boolean blockAbove = false;
                     for (int i = blockPos.getY()+2; i < 320; i++) {
-                        BlockState blockState = serverLevel.getBlockState(new BlockPos(blockPos.getX(), i, blockPos.getY()));
+                        blockPos = new BlockPos(blockPos.getX(), i, blockPos.getZ());
+                        BlockState blockState = serverLevel.getBlockState(blockPos);
                         if (blockState != Blocks.AIR.defaultBlockState()) {
+                            Origins.LOGGER.info(blockPos.toString());
                             blockAbove = true;
                         }
                     }

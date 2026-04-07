@@ -2,9 +2,9 @@ package com.theokapi.mixin;
 
 import com.theokapi.Origins;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +21,7 @@ abstract class InventoryMixin {
         }
         Minecraft minecraft = Minecraft.getInstance();
 
-        LocalPlayer player = minecraft.player;
+        Player player = minecraft.player;
         if (player == null) {
             return;
         }

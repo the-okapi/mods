@@ -14,7 +14,7 @@ abstract class GuiMixin {
     @Inject(method = "extractAirBubbles", at = @At("HEAD"), cancellable = true)
     private void extractAirBubbles(GuiGraphicsExtractor graphics, Player player, int vehicleHearts, int yLineAir, int xRight, CallbackInfo ci) {
         String origin = player.getAttached(Origins.ORIGIN_ATTACHMENT);
-        if (!"merling".equals(origin)) {
+        if (!"merling".equals(origin) || !player.isInWater()) {
             return;
         }
 
