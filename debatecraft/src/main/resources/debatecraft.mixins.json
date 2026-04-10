@@ -9,9 +9,5 @@
 	},
 	"overwrites": {
 		"requireAnnotations": true
-	},
-	"client": [
-		"LogoRendererMixin",
-		"TitleScreenMixin"
-	]
+	}
 }
