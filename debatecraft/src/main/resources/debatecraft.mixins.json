@@ -2,7 +2,8 @@
 	"required": true,
 	"package": "com.unlimitedstuffltd.mixin",
 	"compatibilityLevel": "JAVA_25",
-	"mixins": [
+	"client": [
+		"PauseScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
