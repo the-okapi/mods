@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 abstract class PlayerMixin {
     @ModifyReturnValue(method = "createAttributes", at = @At("RETURN"))
     private static AttributeSupplier.Builder createAttributes(AttributeSupplier.Builder original) {
-        return original.add(DebatecraftAttributes.WORLD_DEBATE_CHANCE, 0.3);
+        return original.add(DebatecraftAttributes.WORLD_DEBATE_CHANCE, 0.4);
     }
 }
