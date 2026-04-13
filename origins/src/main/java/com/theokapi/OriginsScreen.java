@@ -26,7 +26,6 @@ public class OriginsScreen extends Screen {
         Font font = Minecraft.getInstance().font;
 
         graphics.text(font, "Enderian", (width - 146)/2 + 20, 25, 0xFF000000, false);
-        graphics.text(font, "Has infinite ender pearls (C)",);
 
         Button buttonWidget = Button.builder(Component.literal("Done"),
                         (_) -> Minecraft.getInstance().setScreen(null))

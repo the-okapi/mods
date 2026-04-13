@@ -2,6 +2,7 @@ package com.unlimitedstuffltd.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import com.unlimitedstuffltd.screen.DebateScreen;
+import com.unlimitedstuffltd.world.WorldEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.GridLayout;
@@ -23,7 +24,7 @@ abstract class PauseScreenMixin extends Screen {
     private void func(CallbackInfo ci, @Local(name = "helper") GridLayout.RowHelper helper) {
         helper.addChild(Button.builder(Component.literal("Debate Menu"), _ ->
             Minecraft.getInstance().setScreen(
-                    new DebateScreen(Component.empty())
+                    new DebateScreen(Component.empty(), WorldEvent.PLAYER_OPENS_MENU)
             )
         ).width(204).build(), 2);
     }

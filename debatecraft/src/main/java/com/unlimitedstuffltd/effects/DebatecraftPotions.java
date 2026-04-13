@@ -24,10 +24,28 @@ public class DebatecraftPotions {
                             )
                     )
             );
-/*
+
+    public static final Holder<Potion> APPROVAL_POTION =
+            Registry.registerForHolder(
+                    BuiltInRegistries.POTION,
+                    Identifier.fromNamespaceAndPath(Debatecraft.MOD_ID, "approval"),
+                    new Potion("approval",
+                            new MobEffectInstance(
+                                    DebatecraftEffects.APPROVAL,
+                                    3600,
+                                    0
+                            ))
+            );
+
     public static void init() {
+        Debatecraft.LOGGER.info("Initializing Potions");
+
         FabricPotionBrewingBuilder.BUILD.register(builder -> {
-           builder.addMix(Potions.WATER, Items.)
+           builder.addMix(Potions.WATER, Items.SPYGLASS, QUESTIONING_POTION);
+           builder.addMix(Potions.AWKWARD, Items.SPYGLASS, QUESTIONING_POTION);
+
+           builder.addMix(Potions.WATER, Items.POPPY, APPROVAL_POTION);
+           builder.addMix(Potions.AWKWARD, Items.POPPY, APPROVAL_POTION);
         });
-    }*/
+    }
 }

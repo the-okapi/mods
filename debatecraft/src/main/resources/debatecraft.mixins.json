@@ -1,14 +1,14 @@
 {
-	"required": true,
-	"package": "com.unlimitedstuffltd.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"client": [
-		"PauseScreenMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "com.unlimitedstuffltd.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "PauseScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }

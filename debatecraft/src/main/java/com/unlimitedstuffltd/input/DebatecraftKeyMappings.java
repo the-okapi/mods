@@ -3,6 +3,7 @@ package com.unlimitedstuffltd.input;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.unlimitedstuffltd.Debatecraft;
 import com.unlimitedstuffltd.screen.DebateScreen;
+import com.unlimitedstuffltd.world.WorldEvent;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
@@ -29,7 +30,7 @@ public class DebatecraftKeyMappings {
 
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
             if (DEBATE_MENU_KEY.consumeClick()) {
-                minecraft.setScreen(new DebateScreen(Component.empty()));
+                minecraft.setScreen(new DebateScreen(Component.empty(), WorldEvent.PLAYER_OPENS_MENU));
             }
         });
     }

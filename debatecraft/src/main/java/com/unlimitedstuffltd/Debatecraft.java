@@ -1,6 +1,8 @@
 package com.unlimitedstuffltd;
 
+import com.unlimitedstuffltd.attributes.DebatecraftAttributes;
 import com.unlimitedstuffltd.effects.DebatecraftEffects;
+import com.unlimitedstuffltd.effects.DebatecraftPotions;
 import com.unlimitedstuffltd.input.DebatecraftKeyMappings;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,5 +19,8 @@ public class Debatecraft implements ModInitializer {
 	public void onInitialize() {
 		DebatecraftKeyMappings.init();
 		DebatecraftEffects.init();
+		DebatecraftPotions.init();
+		DebatecraftEvents.init();
+		DebatecraftAttributes.init();
 	}
 }

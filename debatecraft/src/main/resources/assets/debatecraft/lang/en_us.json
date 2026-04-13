@@ -3,5 +3,14 @@
   "key.debatecraft.debate_menu": "Debate Menu",
 
   "effect.debatecraft.questioning": "Questioning",
-  "effect.debatecraft.approval": "Approval"
+  "effect.debatecraft.approval": "Approval",
+
+  "item.minecraft.potion.effect.questioning": "Potion of Questioning",
+  "item.minecraft.potion.effect.approval": "Potion of Approval",
+  "item.minecraft.splash_potion.effect.questioning": "Splash Potion of Questioning",
+  "item.minecraft.splash_potion.effect.approval": "Splash Potion of Approval",
+  "item.minecraft.lingering_potion.effect.questioning": "Lingering Potion of Questioning",
+  "item.minecraft.lingering_potion.effect.approval": "Lingering Potion of Approval",
+
+  "attribute.name.debatecraft.world_debate_chance": "World Debate Chance"
 }
