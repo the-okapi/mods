@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "scammer",
+	"version": "${version}",
+	"name": "Scammer",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/scammer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.unlimitedstuffltd.Scammer"
+		],
+		"fabric-datagen": [
+			"com.unlimitedstuffltd.ScammerDataGenerator"
+		],
+		"client": [
+			"com.unlimitedstuffltd.ScammerClient"
+		]
+	},
+	"mixins": [
+		"scammer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
